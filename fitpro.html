@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitPro Academy — Treine com quem leva a sério</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── DARK MODE — variáveis semânticas limpas ── */
+:root {
+  --orange:  #FF5A1F;
+  --orange-d: #D94A12;
+  --bg:      #111010;      /* fundo principal */
+  --bg-card: #1C1A18;      /* cards */
+  --bg-alt:  #181614;      /* seções alternadas */
+  --text:    #E8E4DC;      /* texto principal — claro sobre escuro */
+  --text-sub:#9A9288;      /* texto secundário */
+  --border:  rgba(255,255,255,0.08);
+}
+
+body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(17,16,16,0.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+}
+.nav-logo { font-family: 'Anton', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); }
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--text-sub); transition: color 0.2s; }
+.nav-links a:hover { color: var(--orange); }
+.nav-cta { background: var(--orange); color: #fff; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.65rem 1.5rem; text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 0.4rem; }
+.nav-cta:hover { background: var(--orange-d); transform: translateY(-1px); }
+
+/* HERO */
+.hero { padding-top: 72px; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4vw 5rem 5vw; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.4rem; }
+.hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--orange); }
+.hero-title { font-family: 'Anton', sans-serif; font-size: clamp(3rem, 5.5vw, 5.8rem); line-height: 0.92; letter-spacing: 0.02em; color: var(--text); margin-bottom: 1.6rem; }
+.hero-title .line-orange { color: var(--orange); display: block; }
+.hero-title .line-outline { display: block; -webkit-text-stroke: 2px rgba(232,228,220,0.22); color: transparent; }
+.hero-desc { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--text-sub); max-width: 40ch; margin-bottom: 2.5rem; }
+.hero-desc strong { color: var(--text); font-weight: 700; }
+.hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn-primary { background: var(--orange); color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border-radius: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; box-shadow: 0 6px 24px rgba(255,90,31,0.35); }
+.btn-primary:hover { background: var(--orange-d); transform: translateY(-2px); }
+.btn-outline { border: 2px solid rgba(232,228,220,0.2); color: var(--text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border-radius: 2px; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.hero-stat-number { font-family: 'Anton', sans-serif; font-size: 2rem; color: var(--orange); line-height: 1; }
+.hero-stat-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-sub); margin-top: 0.2rem; }
+
+/* HERO IMAGEM */
+.hero-right { position: relative; overflow: hidden; }
+.hero-img-main { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.75) contrast(1.05); }
+.hero-img-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,16,0.5) 0%, transparent 40%), linear-gradient(135deg, rgba(255,90,31,0.1) 0%, transparent 60%); }
+
+/* BADGE FLUTUANTE — fixo no canto inferior esquerdo da coluna de imagem */
+.hero-badge-float {
+  position: absolute; bottom: 2rem; left: 2rem;
+  background: var(--orange); color: #fff;
+  padding: 1.2rem 1.8rem; border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(255,90,31,0.45);
+  z-index: 10;
+}
+.hero-badge-num { font-family: 'Anton', sans-serif; font-size: 2.6rem; line-height: 1; }
+.hero-badge-text { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.88; margin-top: 0.3rem; }
+
+/* STRIP — fundo escuro puro, sem tom claro */
+.strip { background: #0A0908; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; overflow: hidden; white-space: nowrap; }
+.strip-inner { display: inline-flex; animation: ticker 18s linear infinite; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.strip-item { font-family: 'Anton', sans-serif; font-size: 0.88rem; letter-spacing: 0.18em; color: rgba(232,228,220,0.25); padding: 0 2rem; text-transform: uppercase; }
+.strip-item.hi { color: var(--orange); }
+
+/* SECTIONS */
+.section { padding: 6rem 5vw; }
+.section-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+.section-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--orange); }
+.section-title { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 0.92; letter-spacing: 0.02em; color: var(--text); }
+.section-title em { color: var(--orange); font-style: normal; }
+
+/* DIFERENCIAIS */
+.diffs { background: var(--bg-alt); }
+.diffs-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; align-items: center; }
+.diffs-img-col { position: relative; }
+.diffs-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; display: block; filter: brightness(0.85); }
+.diffs-img-accent { position: absolute; top: -1.5rem; right: -1.5rem; width: 45%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; border: 4px solid var(--bg-alt); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.diffs-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2.5rem; }
+.diff-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.3rem; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border); transition: border-color 0.25s, transform 0.25s; }
+.diff-item:hover { border-color: rgba(255,90,31,0.35); transform: translateX(4px); }
+.diff-icon-box { width: 44px; height: 44px; flex-shrink: 0; background: rgba(255,90,31,0.12); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.diff-title { font-weight: 800; font-size: 0.9rem; color: var(--text); margin-bottom: 0.2rem; }
+.diff-desc { font-size: 0.79rem; color: var(--text-sub); line-height: 1.6; font-weight: 300; }
+
+/* HORÁRIOS */
+.schedule-section { background: var(--bg); }
+.sched-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 3.5rem; }
+.sched-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2rem 1rem; text-align: center; transition: border-color 0.2s, background 0.2s;
+  border-radius: 4px;
+}
+.sched-card.hoje { background: var(--orange); border-color: var(--orange); }
+.sched-card:not(.hoje):hover { background: #242220; border-color: rgba(255,90,31,0.3); }
+
+/* dias da semana — sempre claro e visível */
+.sched-day { font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.7rem; }
+.sched-card.hoje .sched-day { color: #fff; }
+
+.sched-time { font-size: 0.78rem; font-weight: 800; color: var(--orange); line-height: 1.6; }
+.sched-card.hoje .sched-time { color: rgba(255,255,255,0.9); }
+
+.sched-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-sub); margin-top: 0.5rem; }
+.sched-card.hoje .sched-label { color: rgba(255,255,255,0.75); }
+
+/* FOTO DIVISÓRIA */
+.photo-divider { height: 480px; position: relative; overflow: hidden; }
+.photo-divider img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.5); }
+.photo-divider-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(255,90,31,0.38) 0%, rgba(0,0,0,0.3) 100%); }
+.photo-divider-text { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 6rem); letter-spacing: 0.04em; color: #fff; text-align: center; line-height: 0.9; text-shadow: 0 2px 40px rgba(0,0,0,0.5); }
+
+/* PLANOS */
+.plans-section { background: var(--bg-alt); }
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+.plan-card { background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border); padding: 2.5rem 2rem; display: flex; flex-direction: column; position: relative; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.plan-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.5); border-color: rgba(255,90,31,0.3); }
+.plan-card.destaque { background: var(--orange); border-color: var(--orange); }
+.plan-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: #fff; color: var(--orange); font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 1.1rem; border-radius: 0 0 4px 4px; }
+.plan-name { font-family: 'Anton', sans-serif; font-size: 1.7rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.2rem; }
+.plan-card.destaque .plan-name { color: #fff; }
+.plan-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 1.5rem; }
+.plan-card.destaque .plan-sub { color: rgba(255,255,255,0.65); }
+.plan-price { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.3rem; }
+.plan-curr { font-size: 1rem; font-weight: 700; color: var(--orange); }
+.plan-card.destaque .plan-curr { color: rgba(255,255,255,0.8); }
+.plan-amount { font-family: 'Anton', sans-serif; font-size: 4.5rem; line-height: 1; color: var(--text); }
+.plan-card.destaque .plan-amount { color: #fff; }
+.plan-period { font-size: 0.8rem; color: var(--text-sub); align-self: flex-end; margin-bottom: 0.5rem; }
+.plan-card.destaque .plan-period { color: rgba(255,255,255,0.6); }
+.plan-economy { font-size: 0.75rem; font-weight: 800; color: #4ade80; background: rgba(74,222,128,0.12); padding: 0.2rem 0.6rem; border-radius: 2px; display: inline-block; margin-bottom: 1.8rem; }
+.plan-features { list-style: none; flex: 1; margin-bottom: 2rem; }
+.plan-features li { font-size: 0.85rem; color: var(--text-sub); padding: 0.55rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; font-weight: 400; }
+.plan-card.destaque .plan-features li { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.82); }
+.plan-features li::before { content: '✓'; color: var(--orange); font-weight: 800; font-size: 0.8rem; flex-shrink: 0; }
+.plan-card.destaque .plan-features li::before { color: #fff; }
+.plan-features li.off::before { content: '—'; color: var(--text-sub); opacity: 0.4; }
+.plan-features li.off { opacity: 0.35; }
+.plan-btn { display: block; text-align: center; text-decoration: none; background: var(--orange); color: #fff; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem; border-radius: 2px; transition: all 0.2s; }
+.plan-btn:hover { background: var(--orange-d); transform: translateY(-1px); }
+.plan-card.destaque .plan-btn { background: #fff; color: var(--orange); }
+.plan-card.destaque .plan-btn:hover { background: rgba(255,255,255,0.9); }
+
+/* GALERIA */
+.gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 300px 300px; gap: 4px; }
+.gal-item { overflow: hidden; }
+.gal-item:first-child { grid-row: 1 / 3; }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; filter: brightness(0.75); }
+.gal-item:hover img { transform: scale(1.05); filter: brightness(0.95); }
+
+/* ESTRUTURA */
+.infra-section { background: var(--bg); }
+.infra-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 4rem; }
+.infra-item { background: var(--bg-card); border: 1px solid var(--border); padding: 2.2rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem; transition: border-color 0.2s, background 0.2s; }
+.infra-item:hover { background: #222120; border-color: rgba(255,90,31,0.25); }
+.infra-icon { font-size: 1.8rem; }
+.infra-name { font-weight: 800; font-size: 0.88rem; color: var(--text); }
+.infra-desc { font-size: 0.78rem; color: var(--text-sub); line-height: 1.6; font-weight: 300; }
+
+/* CTA */
+.cta-section { background: var(--orange); padding: 6rem 5vw; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem; }
+.cta-title { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 0.92; letter-spacing: 0.02em; color: #fff; }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,0.72); margin-top: 1rem; font-weight: 300; line-height: 1.7; max-width: 50ch; }
+.cta-right { display: flex; flex-direction: column; gap: 1rem; min-width: 260px; }
+.btn-white { background: #fff; color: var(--orange); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 1.1rem 2rem; border-radius: 2px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; transition: all 0.2s; box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+.btn-white:hover { background: #f0ede8; transform: translateY(-2px); }
+.btn-transp { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 1.1rem 2rem; border-radius: 2px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; transition: all 0.2s; }
+.btn-transp:hover { border-color: #fff; background: rgba(255,255,255,0.12); }
+
+/* FOOTER */
+footer { background: #080706; padding: 3rem 5vw 2rem; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 1.8rem; }
+.footer-logo { font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--text); }
+.footer-logo span { color: var(--orange); }
+.footer-tagline { font-size: 0.82rem; color: rgba(232,228,220,0.3); margin-top: 0.6rem; line-height: 1.7; font-weight: 300; max-width: 28ch; }
+.footer-col h4 { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,228,220,0.3); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-col ul li a { font-size: 0.85rem; color: rgba(232,228,220,0.42); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--orange); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 0.75rem; color: rgba(232,228,220,0.2); }
+.footer-credit { font-size: 0.72rem; color: rgba(232,228,220,0.2); }
+.footer-credit a { color: var(--orange); text-decoration: none; }
+
+/* FLOAT WA */
+.float-wa { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 200; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(37,211,102,0.45); text-decoration: none; transition: transform 0.2s; animation: waPulse 2.5s ease-in-out infinite; }
+.float-wa:hover { transform: scale(1.1); }
+@keyframes waPulse { 0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,0.45); } 50% { box-shadow: 0 4px 36px rgba(37,211,102,0.7); } }
+.float-wa svg { width: 28px; fill: #fff; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { height: 60vw; }
+  .hero-badge-float { left: 1.5rem; bottom: 1.5rem; }
+  .diffs-layout { grid-template-columns: 1fr; }
+  .diffs-img-col { display: none; }
+  .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .infra-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-section { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
+  .gal-item:first-child { grid-row: auto; }
+  .sched-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-left { padding: 3rem 5vw; }
+  .section { padding: 4rem 5vw; }
+  .sched-grid { grid-template-columns: repeat(3, 1fr); }
+  .photo-divider { height: 320px; }
+  .gallery { display: none; }
+}
+@media (max-width: 480px) {
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .sched-grid { grid-template-columns: repeat(2, 1fr); }
+  .infra-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">FIT<span>PRO</span></div>
+  <ul class="nav-links">
+    <li><a href="#diferenciais">Estrutura</a></li>
+    <li><a href="#horarios">Horários</a></li>
+    <li><a href="#planos">Planos</a></li>
+  </ul>
+  <a href="https://wa.me/5511999999999?text=Quero%20conhecer%20a%20FitPro!" target="_blank" class="nav-cta">💪 Aula grátis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow">Academia Premium · São Paulo</div>
+    <h1 class="hero-title">
+      SEU MELHOR<br>
+      <span class="line-orange">DESEMPENHO</span>
+      <span class="line-outline">COMEÇA AQUI</span>
+    </h1>
+    <p class="hero-desc">Estrutura <strong>completa e climatizada</strong>, estacionamento gratuito e instrutores certificados. O ambiente que transforma rotina em resultado.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5511999999999?text=Quero%20uma%20aula%20experimental%20gratuita!" target="_blank" class="btn-primary">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L.057 23.547a.75.75 0 0 0 .943.916l5.91-1.557A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.865 0-3.618-.484-5.143-1.333l-.369-.213-3.827 1.009 1.028-3.736-.234-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Aula experimental grátis
+      </a>
+      <a href="#planos" class="btn-outline">Ver planos ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-number">+2k</div><div class="hero-stat-label">Alunos ativos</div></div>
+      <div><div class="hero-stat-number">18</div><div class="hero-stat-label">Anos de história</div></div>
+      <div><div class="hero-stat-number">5★</div><div class="hero-stat-label">Avaliação Google</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85&fit=crop" alt="Treino de alta performance na FitPro Academy" class="hero-img-main" />
+    <div class="hero-img-overlay"></div>
+    <div class="hero-badge-float">
+      <div class="hero-badge-num">+3x</div>
+      <div class="hero-badge-text">Resultado médio<br>dos alunos</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span class="strip-item hi">MUSCULAÇÃO</span><span class="strip-item">·</span>
+    <span class="strip-item">FUNCIONAL</span><span class="strip-item">·</span>
+    <span class="strip-item hi">SPINNING</span><span class="strip-item">·</span>
+    <span class="strip-item">CROSSFIT</span><span class="strip-item">·</span>
+    <span class="strip-item hi">YOGA</span><span class="strip-item">·</span>
+    <span class="strip-item">PILATES</span><span class="strip-item">·</span>
+    <span class="strip-item hi">CARDIO</span><span class="strip-item">·</span>
+    <span class="strip-item">PERSONAL</span><span class="strip-item">·</span>
+    <span class="strip-item hi">MUSCULAÇÃO</span><span class="strip-item">·</span>
+    <span class="strip-item">FUNCIONAL</span><span class="strip-item">·</span>
+    <span class="strip-item hi">SPINNING</span><span class="strip-item">·</span>
+    <span class="strip-item">CROSSFIT</span><span class="strip-item">·</span>
+    <span class="strip-item hi">YOGA</span><span class="strip-item">·</span>
+    <span class="strip-item">PILATES</span><span class="strip-item">·</span>
+    <span class="strip-item hi">CARDIO</span><span class="strip-item">·</span>
+    <span class="strip-item">PERSONAL</span><span class="strip-item">·</span>
+  </div>
+</div>
+
+<!-- DIFERENCIAIS -->
+<section class="section diffs" id="diferenciais">
+  <div class="reveal">
+    <div class="section-eyebrow">Por que a FitPro?</div>
+    <div class="section-title">UMA ACADEMIA<br><em>DIFERENTE.</em></div>
+  </div>
+  <div class="diffs-layout">
+    <div class="diffs-img-col reveal">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&fit=crop" alt="Estrutura FitPro" class="diffs-img" />
+      <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&q=80&fit=crop" alt="Treino funcional" class="diffs-img-accent" />
+    </div>
+    <div class="reveal">
+      <div class="diffs-list">
+        <div class="diff-item"><div class="diff-icon-box">❄️</div><div><div class="diff-title">Ar-condicionado em toda academia</div><div class="diff-desc">Ambiente 100% climatizado para você treinar com conforto, seja no verão ou inverno.</div></div></div>
+        <div class="diff-item"><div class="diff-icon-box">🅿️</div><div><div class="diff-title">Estacionamento gratuito</div><div class="diff-desc">Exclusivo para alunos, sem custo. Chegar e sair sem preocupação.</div></div></div>
+        <div class="diff-item"><div class="diff-icon-box">🏋️</div><div><div class="diff-title">Equipamentos de última geração</div><div class="diff-desc">Aparelhos modernos e bem mantidos para treinar com segurança e eficiência máxima.</div></div></div>
+        <div class="diff-item"><div class="diff-icon-box">👨‍🏫</div><div><div class="diff-title">Instrutores certificados</div><div class="diff-desc">Profissionais de educação física prontos para orientar cada etapa do seu treino.</div></div></div>
+        <div class="diff-item"><div class="diff-icon-box">🚿</div><div><div class="diff-title">Vestiários completos</div><div class="diff-desc">Masculino e feminino com armários, duchas quentes e secador de cabelo.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORÁRIOS -->
+<section class="section schedule-section" id="horarios">
+  <div class="reveal">
+    <div class="section-eyebrow">Funcionamento</div>
+    <div class="section-title">SEMPRE ABERTOS<br><em>PARA VOCÊ.</em></div>
+  </div>
+  <div class="sched-grid reveal">
+    <div class="sched-card"><div class="sched-day">SEG</div><div class="sched-time">05h – 23h</div><div class="sched-label">Segunda</div></div>
+    <div class="sched-card"><div class="sched-day">TER</div><div class="sched-time">05h – 23h</div><div class="sched-label">Terça</div></div>
+    <div class="sched-card"><div class="sched-day">QUA</div><div class="sched-time">05h – 23h</div><div class="sched-label">Quarta</div></div>
+    <div class="sched-card"><div class="sched-day">QUI</div><div class="sched-time">05h – 23h</div><div class="sched-label">Quinta</div></div>
+    <div class="sched-card"><div class="sched-day">SEX</div><div class="sched-time">05h – 22h</div><div class="sched-label">Sexta</div></div>
+    <div class="sched-card"><div class="sched-day">SÁB</div><div class="sched-time">07h – 16h</div><div class="sched-label">Sábado</div></div>
+    <div class="sched-card"><div class="sched-day">DOM</div><div class="sched-time">08h – 13h</div><div class="sched-label">Domingo</div></div>
+  </div>
+</section>
+
+<!-- FOTO DIVISÓRIA -->
+<div class="photo-divider">
+  <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1600&q=80&fit=crop" alt="Treino intenso FitPro" />
+  <div class="photo-divider-overlay">
+    <div class="photo-divider-text">SUOR.<br>FOCO.<br>RESULTADO.</div>
+  </div>
+</div>
+
+<!-- PLANOS -->
+<section class="section plans-section" id="planos">
+  <div class="reveal">
+    <div class="section-eyebrow">Investimento</div>
+    <div class="section-title">PLANOS PARA<br><em>TODOS OS OBJETIVOS</em></div>
+  </div>
+  <div class="plans-grid">
+    <div class="plan-card reveal">
+      <div class="plan-name">Mensal</div>
+      <div class="plan-sub">Sem compromisso</div>
+      <div class="plan-price"><span class="plan-curr">R$</span><span class="plan-amount">99</span><span class="plan-period">/mês</span></div>
+      <div style="height:1.8rem"></div>
+      <ul class="plan-features">
+        <li>Acesso à musculação</li><li>Aulas coletivas inclusas</li><li>Orientação de instrutores</li><li>Vestiário completo</li>
+        <li class="off">Estacionamento gratuito</li><li class="off">Avaliação física</li>
+      </ul>
+      <a href="https://wa.me/5511999999999?text=Interesse%20no%20plano%20Mensal!" target="_blank" class="plan-btn">Começar agora</a>
+    </div>
+    <div class="plan-card destaque reveal">
+      <div class="plan-badge">⚡ Mais popular</div>
+      <div class="plan-name">Trimestral</div>
+      <div class="plan-sub" style="color:rgba(255,255,255,0.4);">Economia de R$ 60</div>
+      <div class="plan-price"><span class="plan-curr">R$</span><span class="plan-amount">79</span><span class="plan-period" style="color:rgba(255,255,255,0.4);">/mês</span></div>
+      <div class="plan-economy">Você economiza R$ 60 no trimestre</div>
+      <ul class="plan-features">
+        <li>Acesso à musculação</li><li>Aulas coletivas inclusas</li><li>Orientação de instrutores</li><li>Vestiário completo</li><li>Estacionamento gratuito</li>
+        <li class="off">Avaliação física</li>
+      </ul>
+      <a href="https://wa.me/5511999999999?text=Interesse%20no%20plano%20Trimestral!" target="_blank" class="plan-btn">Quero este plano</a>
+    </div>
+    <div class="plan-card reveal">
+      <div class="plan-name">Anual</div>
+      <div class="plan-sub">Máxima economia</div>
+      <div class="plan-price"><span class="plan-curr">R$</span><span class="plan-amount">59</span><span class="plan-period">/mês</span></div>
+      <div class="plan-economy">Você economiza R$ 480 no ano</div>
+      <ul class="plan-features">
+        <li>Acesso à musculação</li><li>Aulas coletivas inclusas</li><li>Orientação de instrutores</li><li>Vestiário completo</li><li>Estacionamento gratuito</li><li>Avaliação física mensal</li>
+      </ul>
+      <a href="https://wa.me/5511999999999?text=Interesse%20no%20plano%20Anual!" target="_blank" class="plan-btn">Começar agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<div class="gallery">
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80&fit=crop" alt="Treino intenso" /></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=500&q=80&fit=crop" alt="Musculação" /></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&fit=crop" alt="Cardio" /></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&q=80&fit=crop" alt="Treino funcional" /></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&q=80&fit=crop" alt="Alta performance" /></div>
+</div>
+
+<!-- ESTRUTURA -->
+<section class="section infra-section" id="estrutura">
+  <div class="reveal">
+    <div class="section-eyebrow">Nossa estrutura</div>
+    <div class="section-title">TUDO QUE VOCÊ<br><em>PRECISA</em></div>
+  </div>
+  <div class="infra-grid reveal">
+    <div class="infra-item"><div class="infra-icon">❄️</div><div class="infra-name">Ar-condicionado</div><div class="infra-desc">Ambiente climatizado 100% do tempo</div></div>
+    <div class="infra-item"><div class="infra-icon">🅿️</div><div class="infra-name">Estacionamento</div><div class="infra-desc">Gratuito e exclusivo para alunos</div></div>
+    <div class="infra-item"><div class="infra-icon">🚿</div><div class="infra-name">Vestiários</div><div class="infra-desc">Masc. e fem. com armários e duchas</div></div>
+    <div class="infra-item"><div class="infra-icon">📶</div><div class="infra-name">Wi-Fi Grátis</div><div class="infra-desc">Alta velocidade em toda academia</div></div>
+    <div class="infra-item"><div class="infra-icon">🧴</div><div class="infra-name">Loja de suplementos</div><div class="infra-desc">Produtos selecionados no local</div></div>
+    <div class="infra-item"><div class="infra-icon">🔒</div><div class="infra-name">Armários individuais</div><div class="infra-desc">Com chave e segurança garantida</div></div>
+    <div class="infra-item"><div class="infra-icon">📺</div><div class="infra-name">Telões e música</div><div class="infra-desc">Ambiente motivador em todo espaço</div></div>
+    <div class="infra-item"><div class="infra-icon">♿</div><div class="infra-name">Acessibilidade</div><div class="infra-desc">Estrutura adaptada para todos</div></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="reveal">
+    <div class="cta-title">SUA PRIMEIRA<br>AULA É GRÁTIS.</div>
+    <p class="cta-sub">Venha conhecer a FitPro pessoalmente. Sem burocracia — só você, o treino e o resultado que você merece.</p>
+  </div>
+  <div class="cta-right reveal">
+    <a href="https://wa.me/5511999999999?text=Quero%20minha%20aula%20gratuita%20na%20FitPro!" target="_blank" class="btn-white">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L.057 23.547a.75.75 0 0 0 .943.916l5.91-1.557A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.865 0-3.618-.484-5.143-1.333l-.369-.213-3.827 1.009 1.028-3.736-.234-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <a href="https://instagram.com/fitproacademy" target="_blank" class="btn-transp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Seguir no Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FIT<span>PRO</span> ACADEMY</div>
+      <p class="footer-tagline">Treine com quem leva a sério. Resultados reais para pessoas reais.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul><li><a href="#diferenciais">Estrutura</a></li><li><a href="#horarios">Horários</a></li><li><a href="#planos">Planos</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul><li><a href="https://wa.me/5511999999999" target="_blank">WhatsApp</a></li><li><a href="https://instagram.com/fitproacademy" target="_blank">Instagram</a></li><li><a href="#">Google Maps</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 FitPro Academy. Todos os direitos reservados.</div>
+    <div class="footer-credit">Site criado por <a href="#">Voltz Digital</a></div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5511999999999?text=Quero%20conhecer%20a%20FitPro%20Academy!" target="_blank" class="float-wa" aria-label="Fale pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L.057 23.547a.75.75 0 0 0 .943.916l5.91-1.557A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.865 0-3.618-.484-5.143-1.333l-.369-.213-3.827 1.009 1.028-3.736-.234-.384A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 90); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.boxShadow = window.scrollY > 40 ? '0 2px 24px rgba(0,0,0,0.08)' : 'none';
+});
+
+// Destaque o dia de hoje nos horários
+const days = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
+const today = days[new Date().getDay()];
+document.querySelectorAll('.sched-day').forEach(el => {
+  if (el.textContent.trim() === today) {
+    el.closest('.sched-card').classList.add('hoje');
+    el.closest('.sched-card').querySelector('.sched-label').textContent = 'Hoje ✓';
+  }
+});
+</script>
+</body>
+</html>

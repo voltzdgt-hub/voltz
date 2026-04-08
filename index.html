@@ -3,766 +3,499 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voltz Digital — Portfólio</title>
+<title>Voltz Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;500;600&display=swap');
-</style>
-<style>
-  :root {
-    --volt: #C3D809;
-    --dark: #222022;
-    --darker: #181618;
-    --white: #f5f5f0;
-    --gray: rgba(245,245,240,0.45);
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;
+  --white:#ffffff;
+  --yellow:#f0c93a;
+  --gray:#f2f1ed;
+  --muted:#7a7a72;
+  --f-display:'Syne',sans-serif;
+  --f-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--black);color:var(--white);overflow-x:hidden}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+/* LOADER */
+#loader{
+  position:fixed;inset:0;z-index:999;background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .7s ease,visibility .7s ease;
+}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+.loader-text{
+  font-family:var(--f-display);font-size:clamp(32px,7vw,64px);
+  font-weight:800;letter-spacing:-.04em;color:var(--white);
+  opacity:0;transform:translateY(16px);
+  animation:lIn .7s .15s cubic-bezier(.22,1,.36,1) forwards;
+}
+.loader-text b{color:var(--yellow)}
+.loader-bar{
+  width:48px;height:1px;background:rgba(255,255,255,.15);
+  position:relative;overflow:hidden;
+}
+.loader-bar::after{
+  content:'';position:absolute;inset:0;left:-100%;
+  background:var(--yellow);
+  animation:lBar 1.2s .3s ease forwards;
+}
+@keyframes lIn{to{opacity:1;transform:translateY(0)}}
+@keyframes lBar{to{left:0}}
 
-  body {
-    background: #181618 !important;
-    font-family: 'Barlow', sans-serif;
-    color: var(--white);
-    overflow-x: hidden;
-  }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6vw;height:68px;
+  transition:background .4s,border-color .4s;
+}
+nav.scrolled{
+  background:rgba(8,8,8,.88);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(16px);
+}
+.nav-logo img{height:26px;display:block;opacity:0;animation:fadeUp .6s 1.9s forwards ease}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;
+  opacity:0;animation:fadeUp .6s forwards ease;
+}
+.nav-links li:nth-child(1) a{animation-delay:2s}
+.nav-links li:nth-child(2) a{animation-delay:2.1s}
+.nav-links li:nth-child(3) a{animation-delay:2.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--yellow);color:var(--black)!important;
+  padding:7px 20px;border-radius:2px;font-weight:700!important;
+}
+.nav-cta:hover{opacity:.85}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .3s}
+.mobile-menu{
+  display:none;position:fixed;inset:0;top:68px;
+  background:rgba(8,8,8,.97);flex-direction:column;
+  align-items:center;justify-content:center;gap:44px;
+  backdrop-filter:blur(20px);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:var(--f-display);font-size:clamp(28px,6vw,44px);font-weight:700;
+  color:var(--white);text-decoration:none;letter-spacing:-.02em;
+  opacity:0;animation:fadeUp .4s forwards ease;
+}
+.mobile-menu a:nth-child(1){animation-delay:.05s}
+.mobile-menu a:nth-child(2){animation-delay:.1s}
+.mobile-menu a:nth-child(3){animation-delay:.15s;color:var(--yellow)}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
 
-  /* ── HEADER ── */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(24,22,24,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(195,216,9,0.1);
-    padding: 18px 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+/* HERO */
+#hero{
+  height:100vh;min-height:580px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;text-align:center;padding:0 6vw;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.hero-orb{
+  position:absolute;width:60vw;height:60vw;max-width:700px;max-height:700px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(240,201,58,.07) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes pulse{0%,100%{opacity:.5;scale:1}50%{opacity:1;scale:1.08}}
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.hero-tag{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--yellow);font-weight:600;margin-bottom:28px;
+  opacity:0;animation:fadeUp .6s 2s forwards ease;
+}
+.hero-name{
+  font-family:var(--f-display);
+  font-size:clamp(72px,16vw,200px);
+  font-weight:800;line-height:.88;letter-spacing:-.05em;
+  color:var(--white);position:relative;
+  opacity:0;animation:heroReveal .9s 1.8s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-name .dot{color:var(--yellow)}
+@keyframes heroReveal{
+  from{opacity:0;transform:translateY(24px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.hero-tagline{
+  font-size:clamp(12px,1.3vw,15px);color:rgba(255,255,255,.3);
+  font-weight:300;letter-spacing:.04em;margin-top:24px;
+  opacity:0;animation:fadeUp .6s 2.2s forwards ease;
+}
+.hero-cta-row{
+  display:flex;gap:12px;margin-top:40px;
+  opacity:0;animation:fadeUp .6s 2.4s forwards ease;
+  flex-wrap:wrap;justify-content:center;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--yellow);color:var(--black);
+  font-family:var(--f-display);font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:14px 32px;border-radius:2px;transition:opacity .2s,transform .2s;
+}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);
+  font-family:var(--f-body);font-size:12px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:14px 32px;border-radius:2px;transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
+.hero-scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp .6s 2.8s forwards ease;
+}
+.hero-scroll-hint span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.scroll-track{width:1px;height:44px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.scroll-track::after{
+  content:'';position:absolute;top:-100%;left:0;right:0;bottom:0;
+  background:var(--yellow);
+  animation:scrollTrack 2.2s 3s ease-in-out infinite;
+}
+@keyframes scrollTrack{0%{top:-100%}50%{top:0}100%{top:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-  .logo svg { width: 22px; }
+/* STATS STRIP */
+#stats{
+  background:var(--yellow);padding:32px 6vw;
+  display:flex;justify-content:center;gap:clamp(40px,8vw,120px);flex-wrap:wrap;
+}
+.stat-item{text-align:center}
+.stat-n{
+  font-family:var(--f-display);font-size:clamp(28px,4vw,44px);
+  font-weight:800;color:var(--black);letter-spacing:-.03em;line-height:1;
+}
+.stat-l{font-size:11px;color:rgba(0,0,0,.45);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-top:4px}
 
-  .logo-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 26px;
-    color: var(--volt);
-    letter-spacing: -0.5px;
-  }
+/* PORTFOLIO */
+#portfolio{background:var(--white);padding:120px 6vw}
+.s-eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+.s-heading{
+  font-family:var(--f-display);
+  font-size:clamp(30px,4vw,54px);font-weight:800;
+  letter-spacing:-.03em;color:#111;line-height:1;margin-bottom:64px;
+}
+.s-heading em{font-style:italic;font-weight:400;color:#bbb}
 
-  .logo-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: rgba(245,245,240,0.35);
-    text-transform: uppercase;
-    margin-left: 2px;
-  }
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:860px){.cases-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cases-grid{grid-template-columns:1fr}}
 
-  nav a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gray);
-    text-decoration: none;
-    margin-left: 32px;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--volt); }
+.cc{
+  background:#f8f8f6;padding:44px 32px;
+  position:relative;overflow:hidden;transition:background .3s;
+  cursor:default;
+}
+.cc::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--yellow);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.cc:hover::before{transform:scaleX(1)}
+.cc:hover{background:#101010}
+.cc:hover .cc-tag{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+.cc:hover .cc-cat{color:rgba(255,255,255,.25)}
+.cc:hover .cc-name{color:var(--white)}
+.cc:hover .cc-body{color:rgba(255,255,255,.3)}
+.cc:hover .cc-num{color:var(--yellow)}
+.cc:hover .cc-unit{color:rgba(255,255,255,.2)}
+.cc:hover .cc-cta{color:var(--yellow);border-color:rgba(240,201,58,.25)}
 
-  .nav-cta {
-    background: var(--volt) !important;
-    color: var(--dark) !important;
-    padding: 10px 20px;
-  }
+.cc-tag{
+  display:inline-block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;color:#999;background:#eeecea;padding:4px 10px;border-radius:2px;
+  margin-bottom:20px;transition:all .3s;
+}
+.cc-cat{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#bbb;margin-bottom:5px;font-weight:500;transition:color .3s}
+.cc-name{font-family:var(--f-display);font-size:20px;font-weight:700;color:#111;margin-bottom:12px;letter-spacing:-.02em;transition:color .3s;line-height:1.1}
+.cc-body{font-size:13px;color:#999;line-height:1.65;font-weight:300;margin-bottom:20px;transition:color .3s}
+.cc-num{font-family:var(--f-display);font-size:40px;font-weight:800;color:#111;letter-spacing:-.03em;line-height:1;transition:color .3s}
+.cc-unit{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-top:3px;transition:color .3s}
+.cc-cta{
+  display:inline-flex;align-items:center;gap:5px;margin-top:20px;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  color:#777;text-decoration:none;border-bottom:1px solid #ddd;padding-bottom:2px;
+  transition:all .3s;
+}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 6vw 80px;
-    position: relative;
-    overflow: hidden;
-  }
+/* SERVICES */
+#servicos{background:#0e0e0e;padding:120px 6vw}
+#servicos .s-eyebrow{color:rgba(255,255,255,.2)}
+#servicos .s-heading{color:var(--white)}
+#servicos .s-heading em{color:rgba(255,255,255,.18)}
 
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(195,216,9,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(195,216,9,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05)}
+@media(max-width:860px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.svc-grid{grid-template-columns:1fr}}
 
-  .hero-bolt {
-    position: absolute;
-    right: -4vw; top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.06;
-    width: 50vw;
-  }
+.svc{background:#0e0e0e;padding:44px 28px;transition:background .3s}
+.svc:hover{background:#161616}
+.svc-n{font-family:var(--f-display);font-size:11px;font-weight:700;color:rgba(255,255,255,.1);margin-bottom:20px;letter-spacing:.05em}
+.svc-t{font-family:var(--f-display);font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-.01em}
+.svc-d{font-size:13px;color:rgba(255,255,255,.28);line-height:1.65;font-weight:300}
 
-  .hero-bolt svg { width: 100%; height: auto; }
+/* CTA */
+#contato{
+  background:var(--yellow);padding:120px 6vw;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.cta-h{
+  font-family:var(--f-display);font-size:clamp(36px,6.5vw,88px);
+  font-weight:800;letter-spacing:-.04em;line-height:.92;color:var(--black);margin-bottom:44px;
+}
+.cta-h em{font-style:italic;font-weight:400;opacity:.4}
+.btn-dark{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--black);color:var(--white);
+  font-family:var(--f-display);font-size:13px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  padding:16px 40px;border-radius:2px;transition:opacity .2s,transform .2s;
+}
+.btn-dark:hover{opacity:.82;transform:translateY(-2px)}
 
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--volt);
-    text-transform: uppercase;
-    margin-bottom: 28px;
-  }
+/* FOOTER */
+footer{
+  background:var(--black);border-top:1px solid rgba(255,255,255,.05);
+  padding:32px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+footer img{height:20px;opacity:.45;display:block}
+.fc{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.03em}
+.fs{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.08em;text-transform:uppercase}
 
-  .hero-tag::before {
-    content: '';
-    width: 28px; height: 2px;
-    background: var(--volt);
-    display: block;
-  }
-
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(52px, 9vw, 120px);
-    line-height: 0.88;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    max-width: 800px;
-  }
-
-  .hero h1 em {
-    color: var(--volt);
-    font-style: normal;
-    display: block;
-  }
-
-  .hero-desc {
-    font-size: clamp(15px, 1.6vw, 18px);
-    color: var(--gray);
-    line-height: 1.7;
-    max-width: 480px;
-    margin-bottom: 48px;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--volt);
-    color: var(--dark);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 16px 32px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-
-  .btn-outline {
-    border: 1px solid rgba(195,216,9,0.3);
-    color: var(--volt);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 16px 32px;
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--volt); }
-
-  /* ── STATS BAR ── */
-  .stats {
-    background: var(--volt);
-    padding: 28px 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stat-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(36px, 5vw, 56px);
-    color: var(--dark);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: rgba(34,32,34,0.55);
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(34,32,34,0.2);
-  }
-
-  /* ── SECTION HEADER ── */
-  .section {
-    padding: 100px 6vw;
-  }
-
-  .section-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--volt);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .section-tag::before {
-    content: '';
-    width: 20px; height: 2px;
-    background: var(--volt);
-    display: block;
-  }
-
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(40px, 6vw, 80px);
-    text-transform: uppercase;
-    line-height: 0.9;
-    margin-bottom: 60px;
-  }
-
-  .section-title em {
-    color: var(--volt);
-    font-style: normal;
-  }
-
-  /* ── PORTFOLIO GRID ── */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2px;
-  }
-
-  .case {
-    background: var(--dark);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    aspect-ratio: 1;
-    transition: transform 0.3s;
-  }
-
-  .case:hover { transform: scale(0.98); }
-  .case:hover .case-overlay { opacity: 1; }
-  .case:hover .case-visual { filter: brightness(0.4); }
-
-  .case-visual {
-    width: 100%; height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: filter 0.3s;
-    padding: 32px;
-  }
-
-  .case-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-
-  .case-client {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 28px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
-  .case-type {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--volt);
-    text-transform: uppercase;
-  }
-
-  .case-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 32px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .case-result {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 52px;
-    color: var(--volt);
-    line-height: 0.9;
-    text-align: center;
-    margin-bottom: 12px;
-  }
-
-  .case-desc {
-    font-size: 14px;
-    color: var(--gray);
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  .case-tag {
-    position: absolute;
-    top: 16px; left: 16px;
-    background: var(--volt);
-    color: var(--dark);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 12px;
-  }
-
-  /* Case color variants */
-  .case-1 { background: #1a1f0a; }
-  .case-2 { background: #0f1a0f; }
-  .case-3 { background: #1a0f0f; }
-  .case-4 { background: #0f0f1a; }
-  .case-5 { background: #1a1505; }
-  .case-6 { background: #0a1a15; }
-
-  /* ── SERVICES ── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2px;
-  }
-
-  .service-card {
-    background: var(--dark);
-    padding: 40px 36px;
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .service-card:hover {
-    border-color: var(--volt);
-    background: #2a282a;
-  }
-
-  .service-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--volt);
-    opacity: 0.5;
-    margin-bottom: 24px;
-  }
-
-  .service-icon {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .service-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 32px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    line-height: 0.95;
-  }
-
-  .service-desc {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.7;
-  }
-
-  /* ── CTA SECTION ── */
-  .cta-section {
-    background: var(--volt);
-    padding: 100px 6vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-bolt {
-    position: absolute;
-    right: -60px; top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.08;
-    width: 300px;
-  }
-
-  .cta-bolt-left {
-    position: absolute;
-    left: -60px; top: 50%;
-    transform: translateY(-50%) scaleX(-1);
-    opacity: 0.08;
-    width: 300px;
-  }
-
-  .cta-section h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(42px, 7vw, 90px);
-    color: var(--dark);
-    text-transform: uppercase;
-    line-height: 0.88;
-    margin-bottom: 24px;
-    max-width: 700px;
-  }
-
-  .cta-section p {
-    font-size: 16px;
-    color: rgba(34,32,34,0.65);
-    margin-bottom: 40px;
-    max-width: 400px;
-    line-height: 1.6;
-  }
-
-  .btn-dark {
-    background: var(--dark);
-    color: var(--volt);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 18px 40px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-dark:hover { opacity: 0.85; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #111011;
-    padding: 48px 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(195,216,9,0.08);
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footer-logo {
-    display: flex; align-items: center; gap: 10px;
-  }
-
-  .footer-copy {
-    font-size: 12px;
-    color: rgba(245,245,240,0.25);
-    letter-spacing: 1px;
-  }
-
-  .footer-handle {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--volt);
-    text-transform: uppercase;
-  }
+/* REVEAL */
+.r{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.r.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 </style>
 </head>
-<body bgcolor="#181618">
+<body>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <svg viewBox="0 0 52 140" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="36,0 10,70 26,70 14,140 52,55 34,55 48,0" fill="#C3D809"/>
-    </svg>
-    <div>
-      <div class="logo-text">VOLTZ</div>
-      <div class="logo-sub">Digital</div>
-    </div>
-  </div>
-  <nav>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#contato" class="nav-cta">Fale conosco</a>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-bolt">
-    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="140,0 40,200 100,200 60,400 200,170 130,170 190,0" fill="#C3D809"/>
-    </svg>
-  </div>
-  <div class="hero-tag">Portfólio Voltz Digital</div>
-  <h1>Projetos que<br><em>aceleram</em><br>negócios.</h1>
-  <p class="hero-desc">Cada projeto nasce de uma estratégia. Cada estratégia gera resultado. Veja como transformamos negócios no digital.</p>
-  <div class="hero-btns">
-    <a href="#portfolio" class="btn-primary">Ver projetos ⚡</a>
-    <a href="#contato" class="btn-outline">Quero um projeto</a>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <span class="stat-number">+20</span>
-    <span class="stat-label">Projetos entregues</span>
-  </div>
-  <div class="stat-divider"></div>
-  <div class="stat">
-    <span class="stat-number">4</span>
-    <span class="stat-label">Serviços especializados</span>
-  </div>
-  <div class="stat-divider"></div>
-  <div class="stat">
-    <span class="stat-number">3x</span>
-    <span class="stat-label">Resultado médio dos clientes</span>
-  </div>
-  <div class="stat-divider"></div>
-  <div class="stat">
-    <span class="stat-number">100%</span>
-    <span class="stat-label">Foco em performance</span>
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-text">VOLTZ<b>.</b></div>
+    <div class="loader-bar"></div>
   </div>
 </div>
 
-<!-- PORTFOLIO -->
-<section class="section" id="portfolio">
-  <div class="section-tag">Cases</div>
-  <div class="section-title">Nossos<br><em>projetos</em></div>
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <img src="Captura_de_tela_2026-04-07_140908.png" alt="Voltz Digital">
+  </a>
+  <button class="hamburger" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#contato" class="nav-cta">Fale conosco</a></li>
+  </ul>
+</nav>
 
-  <div class="portfolio-grid">
+<div class="mobile-menu" id="mob">
+  <a href="#portfolio" class="mob-link">Portfólio</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#contato" class="mob-link">Fale conosco</a>
+</div>
 
-    <!-- Case 1 — Bella Pizza (clicável) -->
-    <a href="bella-pizza.html" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Tráfego Pago</div>
-      <div class="case-visual">
-        <div class="case-icon">🍕</div>
-        <div class="case-client">Bella Pizza</div>
-        <div class="case-type">Restaurante · Meta Ads</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">+180%<br>pedidos</div>
-        <div class="case-desc">Campanha de tráfego pago no Instagram com foco em delivery local. Aumento expressivo de pedidos em 45 dias.</div>
-        <div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-      </div>
-    </a>
-
-    <!-- Case 2 -->
-    
-	<a href="fitpro.html" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Landing Page</div>
-	  
-	  
-      <div class="case-visual">
-        <div class="case-icon">🏋️</div>
-        <div class="case-client">FitPro<br>Academy</div>
-        <div class="case-type">Academia · Landing Page</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">3x<br>matrículas</div>
-        <div class="case-desc">Landing page de alta conversão para captação de alunos. Formulário otimizado e copy focado em dor e solução.</div>
-		<div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-		
-		 </div>
-          </a>
-	 
-	 
-    <!-- Case 3 -->
-     <a href="" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Site Profissional</div>
-	  
-	  
-      <div class="case-visual">
-        <div class="case-icon">⚖️</div>
-        <div class="case-client">Advocacia<br>Mendes</div>
-        <div class="case-type">Jurídico · Site Institucional</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">+95%<br>autoridade</div>
-        <div class="case-desc">Site institucional moderno para escritório de advocacia. Design que transmite credibilidade e gera confiança.</div>
-		<div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-		</div>
-    </a>
-	
-
-    <!-- Case 4 -->
-     <a href="studio_glam.html" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Mini Site</div>
-	   
-      <div class="case-visual">
-        <div class="case-icon">💇</div>
-        <div class="case-client">Studio<br>Glam</div>
-        <div class="case-type">Beleza · Mini Site</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">+240%<br>agendamentos</div>
-        <div class="case-desc">Mini site com link de agendamento direto integrado ao WhatsApp. Simples, rápido e altamente eficiente.</div>
-		<div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-		</div>
-    </a>
- 
-    <!-- Case 5 -->
-    <a href="" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Tráfego Pago</div>
-	  
-      <div class="case-visual">
-        <div class="case-icon">🏠</div>
-        <div class="case-client">ImóvelMax</div>
-        <div class="case-type">Imobiliária · Google Ads</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">+60<br>leads/mês</div>
-        <div class="case-desc">Campanha no Google Ads segmentada por intenção de busca. Custo por lead reduzido em 40% no primeiro mês.</div>
-		
-		<div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-		</div>
-     	 </a>
-
-    <!-- Case 6 -->
-     <a href="" target="_blank" rel="noopener" class="case case-1" style="text-decoration:none;color:inherit;">
-      <div class="case-tag">Landing Page</div>
-	 
-      <div class="case-visual">
-        <div class="case-icon">📚</div>
-        <div class="case-client">EduCursos<br>Online</div>
-        <div class="case-type">Educação · Landing Page</div>
-      </div>
-      <div class="case-overlay">
-        <div class="case-result">+320<br>alunos</div>
-        <div class="case-desc">Landing page para lançamento de curso online. Estrutura de copy persuasivo com prova social e urgência.</div>
-		<div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:10px 20px;">
-          VER SITE ↗
-        </div>
-		 </div>
-	</a>
-
-  
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <p class="hero-tag">Agência de Performance Digital</p>
+  <h1 class="hero-name">VOLTZ<span class="dot">.</span></h1>
+  <p class="hero-tagline">Projetos que aceleram negócios.</p>
+  <div class="hero-cta-row">
+    <a href="#portfolio" class="btn-primary">Ver projetos</a>
+    <a href="#contato" class="btn-ghost">Fale conosco</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-track"></div>
+  </div>
 </section>
 
-<!-- SERVICES -->
-<section class="section" id="servicos" style="background: var(--dark); padding-top: 80px; padding-bottom: 80px;">
-  <div class="section-tag">O que fazemos</div>
-  <div class="section-title">Nossos<br><em>serviços</em></div>
+<div id="stats">
+  <div class="stat-item r">
+    <div class="stat-n">+20</div>
+    <div class="stat-l">Projetos entregues</div>
+  </div>
+  <div class="stat-item r d1">
+    <div class="stat-n">4</div>
+    <div class="stat-l">Serviços especializados</div>
+  </div>
+  <div class="stat-item r d2">
+    <div class="stat-n">3×</div>
+    <div class="stat-l">Resultado médio</div>
+  </div>
+  <div class="stat-item r d3">
+    <div class="stat-n">100%</div>
+    <div class="stat-l">Foco em performance</div>
+  </div>
+</div>
 
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-number">01</div>
-      <span class="service-icon">📣</span>
-      <div class="service-name">Tráfego<br>Pago</div>
-      <div class="service-desc">Campanhas no Google, Meta e Instagram que atraem clientes prontos para comprar. Sem desperdício de verba.</div>
+<section id="portfolio">
+  <p class="s-eyebrow r">Cases</p>
+  <h2 class="s-heading r d1">Nossos <em>projetos</em></h2>
+  <div class="cases-grid">
+    <div class="cc r">
+      <span class="cc-tag">Tráfego Pago</span>
+      <div class="cc-cat">Bella Pizza · Meta Ads</div>
+      <h3 class="cc-name">Bella Pizza</h3>
+      <p class="cc-body">Campanha no Instagram focada em delivery local. Aumento expressivo em 45 dias.</p>
+      <div class="cc-num">+180%</div>
+      <div class="cc-unit">pedidos</div>
+      <a href="bella-pizza.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
     </div>
-    <div class="service-card">
-      <div class="service-number">02</div>
-      <span class="service-icon">🌐</span>
-      <div class="service-name">Sites<br>Profissionais</div>
-      <div class="service-desc">Sites rápidos, modernos e otimizados para converter visitantes em clientes. Design que transmite credibilidade.</div>
+    <div class="cc r d1">
+      <span class="cc-tag">Landing Page</span>
+      <div class="cc-cat">FitPro Academy · Landing Page</div>
+      <h3 class="cc-name">FitPro Academy</h3>
+      <p class="cc-body">Página de alta conversão para captação de alunos com copy focado em resultado.</p>
+      <div class="cc-num">3×</div>
+      <div class="cc-unit">matrículas</div>
+      <a href="fitpro.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
     </div>
-    <div class="service-card">
-      <div class="service-number">03</div>
-      <span class="service-icon">🎯</span>
-      <div class="service-name">Landing<br>Pages</div>
-      <div class="service-desc">Páginas focadas em uma única ação. Estrutura de copy e design pensados para maximizar conversões.</div>
+    <div class="cc r d2">
+      <span class="cc-tag">Site Institucional</span>
+      <div class="cc-cat">Advocacia Mendes · Jurídico</div>
+      <h3 class="cc-name">Advocacia Mendes</h3>
+      <p class="cc-body">Site moderno que transmite credibilidade e gera confiança para o escritório.</p>
+      <div class="cc-num">+95%</div>
+      <div class="cc-unit">autoridade</div>
+      <a href="#" class="cc-cta">Ver projeto ↗</a>
     </div>
-    <div class="service-card">
-      <div class="service-number">04</div>
-      <span class="service-icon">⚡</span>
-      <div class="service-name">Mini<br>Sites</div>
-      <div class="service-desc">A solução ideal para quem precisa de presença digital rápida, profissional e integrada ao WhatsApp.</div>
+    <div class="cc r">
+      <span class="cc-tag">Mini Site</span>
+      <div class="cc-cat">Studio Glam · Beleza</div>
+      <h3 class="cc-name">Studio Glam</h3>
+      <p class="cc-body">Mini site integrado ao WhatsApp com agendamento direto. Simples e eficiente.</p>
+      <div class="cc-num">+240%</div>
+      <div class="cc-unit">agendamentos</div>
+      <a href="studio_glam.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
+    </div>
+    <div class="cc r d1">
+      <span class="cc-tag">Tráfego Pago</span>
+      <div class="cc-cat">ImóvelMax · Google Ads</div>
+      <h3 class="cc-name">ImóvelMax</h3>
+      <p class="cc-body">Google Ads por intenção de busca. Custo por lead reduzido em 40% no 1º mês.</p>
+      <div class="cc-num">+60</div>
+      <div class="cc-unit">leads / mês</div>
+      <a href="#" class="cc-cta">Ver projeto ↗</a>
+    </div>
+    <div class="cc r d2">
+      <span class="cc-tag">Landing Page</span>
+      <div class="cc-cat">EduCursos Online · Educação</div>
+      <h3 class="cc-name">EduCursos Online</h3>
+      <p class="cc-body">Lançamento de curso com copy persuasivo, prova social e urgência.</p>
+      <div class="cc-num">+320</div>
+      <div class="cc-unit">alunos</div>
+      <a href="#" class="cc-cta">Ver projeto ↗</a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contato">
-  <div class="cta-bolt">
-    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="140,0 40,200 100,200 60,400 200,170 130,170 190,0" fill="#222022"/>
-    </svg>
+<section id="servicos">
+  <p class="s-eyebrow r">O que fazemos</p>
+  <h2 class="s-heading r d1">Nossos <em>serviços</em></h2>
+  <div class="svc-grid">
+    <div class="svc r">
+      <div class="svc-n">01</div>
+      <h3 class="svc-t">Tráfego Pago</h3>
+      <p class="svc-d">Campanhas no Google, Meta e Instagram que atraem clientes prontos para comprar.</p>
+    </div>
+    <div class="svc r d1">
+      <div class="svc-n">02</div>
+      <h3 class="svc-t">Sites Profissionais</h3>
+      <p class="svc-d">Sites rápidos, modernos e otimizados para converter visitantes em clientes.</p>
+    </div>
+    <div class="svc r d2">
+      <div class="svc-n">03</div>
+      <h3 class="svc-t">Landing Pages</h3>
+      <p class="svc-d">Páginas focadas em uma única ação com copy e design para maximizar conversões.</p>
+    </div>
+    <div class="svc r d3">
+      <div class="svc-n">04</div>
+      <h3 class="svc-t">Mini Sites</h3>
+      <p class="svc-d">Presença digital rápida, profissional e integrada ao WhatsApp.</p>
+    </div>
   </div>
-  <div class="cta-bolt-left">
-    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="140,0 40,200 100,200 60,400 200,170 130,170 190,0" fill="#222022"/>
-    </svg>
-  </div>
-  <h2>Seu negócio<br>é o próximo.</h2>
-  <p>Vamos criar juntos uma estratégia digital que gera resultados reais para o seu negócio.</p>
-  <a href="https://wa.me/5511939300263" class="btn-dark">⚡ Falar no WhatsApp</a>
 </section>
 
-<!-- FOOTER -->
+<section id="contato">
+  <h2 class="cta-h r">Seu negócio<br>é o <em>próximo.</em></h2>
+  <a href="https://wa.me/5511939300263" class="btn-dark r d1">⚡ Falar no WhatsApp</a>
+</section>
+
 <footer>
-  <div class="footer-logo">
-    <svg width="18" viewBox="0 0 52 140" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="36,0 10,70 26,70 14,140 52,55 34,55 48,0" fill="#C3D809"/>
-    </svg>
-    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:#C3D809;margin-left:8px;">VOLTZ DIGITAL</span>
-  </div>
-  <div class="footer-copy">© 2026 Voltz Digital. Todos os direitos reservados.</div>
-  <div class="footer-handle">@voltz.digital</div>
+  <img src="Captura_de_tela_2026-04-07_140908.png" alt="Voltz Digital">
+  <span class="fc">© 2026 Voltz Digital. Todos os direitos reservados.</span>
+  <span class="fs">@voltz.digital</span>
 </footer>
 
+<script>
+// Loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('done'),2000);
+});
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+
+// Hamburger
+const ham=document.getElementById('ham');
+const mob=document.getElementById('mob');
+ham.addEventListener('click',()=>{
+  const open=mob.classList.toggle('open');
+  const sp=ham.querySelectorAll('span');
+  if(open){
+    sp[0].style.cssText='transform:rotate(45deg) translate(4.5px,4.5px)';
+    sp[1].style.opacity='0';
+    sp[2].style.cssText='transform:rotate(-45deg) translate(4.5px,-4.5px)';
+  } else {
+    sp.forEach(s=>s.style.cssText='');
+  }
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mob.classList.remove('open');
+  ham.querySelectorAll('span').forEach(s=>s.style.cssText='');
+}));
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}
+  });
+},{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

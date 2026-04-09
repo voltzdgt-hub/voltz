@@ -1,6 +1,7 @@
 {
-  "routes": [
-    { "src": "/mgadv", "dest": "/mgadv/index.html" },
-    { "src": "/mgadv/(.*)", "dest": "/mgadv/$1" }
+  "rewrites": [
+    { "source": "/mgadv", "destination": "/mgadv/index.html" },
+    { "source": "/mgadv/", "destination": "/mgadv/index.html" },
+    { "source": "/mgadv/:path*", "destination": "/mgadv/:path*" }
   ]
 }

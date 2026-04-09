@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "src": "/mgadv", "dest": "/mgadv/index.html" },
+    { "src": "/mgadv/(.*)", "dest": "/mgadv/$1" }
+  ]
+}

@@ -243,29 +243,30 @@ nav {
 
   pointer-events: none;
 }
-@media (max-width: 768px) {
+
+	@media (max-width: 768px) {
 
   .hero {
     grid-template-columns: 1fr;
-
     min-height: 100svh;
 
     background:
       linear-gradient(
         to bottom,
-        #000 0%,
-        rgba(0,0,0,0.85) 35%,
-        rgba(0,0,0,0.5) 60%,
-        rgba(0,0,0,0.2) 80%,
-        rgba(0,0,0,0) 100%
+        rgba(0,0,0,0.1) 0%,   /* 👈 deixa a imagem aparecer */
+        rgba(0,0,0,0.4) 35%,
+        rgba(0,0,0,0.7) 65%,
+        rgba(0,0,0,0.95) 100%
       ),
-      url('bia1.jpg') center top / cover no-repeat;
+      url('bia1.jpg') center 10% / cover no-repeat; /* 👈 AJUSTE DO ROSTO */
   }
 
   .hero-right {
-    display: none; /* 👈 remove o bloco separado */
+    display: none;
   }
 
+}
+	
   .hero-left {
     padding: 100px 20px 60px;
   }

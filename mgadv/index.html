@@ -1,35 +1,473 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Monteiro &amp; Gonçalves  -  Advocacia</title>
-    <meta name="description" content="Monteiro &amp; Gonçalves: advocacia em São Bernardo do Campo, atendimento personalizado, atuação no Grande ABC e consultas online.">
-    <meta name="author" content="Lovable" />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;
+  --white:#ffffff;
+  --yellow:#f0c93a;
+  --gray:#f2f1ed;
+  --muted:#7a7a72;
+  --f-display:'Syne',sans-serif;
+  --f-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--black);color:var(--white);overflow-x:hidden}
 
-    <!-- TODO: Update og:title to match your application name -->
-    
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/faa2eb38-f487-4b3f-bee9-35c893c2e82c/id-preview-62c8709c--c2c8a4a1-c521-46c9-90e1-919afd29fb92.lovable.app-1775656904228.png">
+/* LOADER */
+#loader{
+  position:fixed;inset:0;z-index:999;background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .7s ease,visibility .7s ease;
+}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+.loader-text{
+  font-family:var(--f-display);font-size:clamp(32px,7vw,64px);
+  font-weight:800;letter-spacing:-.04em;color:var(--white);
+  opacity:0;transform:translateY(16px);
+  animation:lIn .7s .15s cubic-bezier(.22,1,.36,1) forwards;
+}
+.loader-text b{color:var(--yellow)}
+.loader-bar{
+  width:48px;height:1px;background:rgba(255,255,255,.15);
+  position:relative;overflow:hidden;
+}
+.loader-bar::after{
+  content:'';position:absolute;inset:0;left:-100%;
+  background:var(--yellow);
+  animation:lBar 1.2s .3s ease forwards;
+}
+@keyframes lIn{to{opacity:1;transform:translateY(0)}}
+@keyframes lBar{to{left:0}}
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/faa2eb38-f487-4b3f-bee9-35c893c2e82c/id-preview-62c8709c--c2c8a4a1-c521-46c9-90e1-919afd29fb92.lovable.app-1775656904228.png">
-    
-  
-    
-  <meta property="og:title" content="Monteiro &amp; Gonçalves  -  Advocacia">
-  <meta name="twitter:title" content="Monteiro &amp; Gonçalves  -  Advocacia">
-  <meta property="og:description" content="Monteiro &amp; Gonçalves: advocacia em São Bernardo do Campo, atendimento personalizado, atuação no Grande ABC e consultas online.">
-  <meta name="twitter:description" content="Monteiro &amp; Gonçalves: advocacia em São Bernardo do Campo, atendimento personalizado, atuação no Grande ABC e consultas online.">
-  <link rel="icon" href="favicon.ico">
-<script type="module" src="./assets/index-D5URD4-a.js"></script>
-<link rel="stylesheet" href="./assets/index-CIMKZ5UV.css">
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6vw;height:68px;
+  transition:background .4s,border-color .4s;
+}
+nav.scrolled{
+  background:rgba(8,8,8,.88);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(16px);
+}
+.nav-logo img{height:26px;display:block;opacity:0;animation:fadeUp .6s 1.9s forwards ease}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;
+  opacity:0;animation:fadeUp .6s forwards ease;
+}
+.nav-links li:nth-child(1) a{animation-delay:2s}
+.nav-links li:nth-child(2) a{animation-delay:2.1s}
+.nav-links li:nth-child(3) a{animation-delay:2.2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--yellow);color:var(--black)!important;
+  padding:7px 20px;border-radius:2px;font-weight:700!important;
+}
+.nav-cta:hover{opacity:.85}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;background:none;border:none;
+}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .3s}
+.mobile-menu{
+  display:none;position:fixed;inset:0;top:68px;
+  background:rgba(8,8,8,.97);flex-direction:column;
+  align-items:center;justify-content:center;gap:44px;
+  backdrop-filter:blur(20px);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:var(--f-display);font-size:clamp(28px,6vw,44px);font-weight:700;
+  color:var(--white);text-decoration:none;letter-spacing:-.02em;
+  opacity:0;animation:fadeUp .4s forwards ease;
+}
+.mobile-menu a:nth-child(1){animation-delay:.05s}
+.mobile-menu a:nth-child(2){animation-delay:.1s}
+.mobile-menu a:nth-child(3){animation-delay:.15s;color:var(--yellow)}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+
+/* HERO */
+#hero{
+  height:100vh;min-height:580px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;text-align:center;padding:0 6vw;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.hero-orb{
+  position:absolute;width:60vw;height:60vw;max-width:700px;max-height:700px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(240,201,58,.07) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes pulse{0%,100%{opacity:.5;scale:1}50%{opacity:1;scale:1.08}}
+
+.hero-tag{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--yellow);font-weight:600;margin-bottom:28px;
+  opacity:0;animation:fadeUp .6s 2s forwards ease;
+}
+.hero-name{
+  font-family:var(--f-display);
+  font-size:clamp(72px,16vw,200px);
+  font-weight:800;line-height:.88;letter-spacing:-.05em;
+  color:var(--white);position:relative;
+  opacity:0;animation:heroReveal .9s 1.8s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-name .dot{color:var(--yellow)}
+@keyframes heroReveal{
+  from{opacity:0;transform:translateY(24px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.hero-tagline{
+  font-size:clamp(12px,1.3vw,15px);color:rgba(255,255,255,.3);
+  font-weight:300;letter-spacing:.04em;margin-top:24px;
+  opacity:0;animation:fadeUp .6s 2.2s forwards ease;
+}
+.hero-cta-row{
+  display:flex;gap:12px;margin-top:40px;
+  opacity:0;animation:fadeUp .6s 2.4s forwards ease;
+  flex-wrap:wrap;justify-content:center;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--yellow);color:var(--black);
+  font-family:var(--f-display);font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:14px 32px;border-radius:2px;transition:opacity .2s,transform .2s;
+}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);
+  font-family:var(--f-body);font-size:12px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:14px 32px;border-radius:2px;transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
+.hero-scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp .6s 2.8s forwards ease;
+}
+.hero-scroll-hint span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.scroll-track{width:1px;height:44px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.scroll-track::after{
+  content:'';position:absolute;top:-100%;left:0;right:0;bottom:0;
+  background:var(--yellow);
+  animation:scrollTrack 2.2s 3s ease-in-out infinite;
+}
+@keyframes scrollTrack{0%{top:-100%}50%{top:0}100%{top:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* STATS STRIP */
+#stats{
+  background:var(--yellow);padding:32px 6vw;
+  display:flex;justify-content:center;gap:clamp(40px,8vw,120px);flex-wrap:wrap;
+}
+.stat-item{text-align:center}
+.stat-n{
+  font-family:var(--f-display);font-size:clamp(28px,4vw,44px);
+  font-weight:800;color:var(--black);letter-spacing:-.03em;line-height:1;
+}
+.stat-l{font-size:11px;color:rgba(0,0,0,.45);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-top:4px}
+
+/* PORTFOLIO */
+#portfolio{background:var(--white);padding:120px 6vw}
+.s-eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+.s-heading{
+  font-family:var(--f-display);
+  font-size:clamp(30px,4vw,54px);font-weight:800;
+  letter-spacing:-.03em;color:#111;line-height:1;margin-bottom:64px;
+}
+.s-heading em{font-style:italic;font-weight:400;color:#bbb}
+
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:860px){.cases-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cases-grid{grid-template-columns:1fr}}
+
+.cc{
+  background:#f8f8f6;padding:44px 32px;
+  position:relative;overflow:hidden;transition:background .3s;
+  cursor:default;
+}
+.cc::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--yellow);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.cc:hover::before{transform:scaleX(1)}
+.cc:hover{background:#101010}
+.cc:hover .cc-tag{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+.cc:hover .cc-cat{color:rgba(255,255,255,.25)}
+.cc:hover .cc-name{color:var(--white)}
+.cc:hover .cc-body{color:rgba(255,255,255,.3)}
+.cc:hover .cc-num{color:var(--yellow)}
+.cc:hover .cc-unit{color:rgba(255,255,255,.2)}
+.cc:hover .cc-cta{color:var(--yellow);border-color:rgba(240,201,58,.25)}
+
+.cc-tag{
+  display:inline-block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;color:#999;background:#eeecea;padding:4px 10px;border-radius:2px;
+  margin-bottom:20px;transition:all .3s;
+}
+.cc-cat{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#bbb;margin-bottom:5px;font-weight:500;transition:color .3s}
+.cc-name{font-family:var(--f-display);font-size:20px;font-weight:700;color:#111;margin-bottom:12px;letter-spacing:-.02em;transition:color .3s;line-height:1.1}
+.cc-body{font-size:13px;color:#999;line-height:1.65;font-weight:300;margin-bottom:20px;transition:color .3s}
+.cc-num{font-family:var(--f-display);font-size:40px;font-weight:800;color:#111;letter-spacing:-.03em;line-height:1;transition:color .3s}
+.cc-unit{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-top:3px;transition:color .3s}
+.cc-cta{
+  display:inline-flex;align-items:center;gap:5px;margin-top:20px;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  color:#777;text-decoration:none;border-bottom:1px solid #ddd;padding-bottom:2px;
+  transition:all .3s;
+}
+
+/* SERVICES */
+#servicos{background:#0e0e0e;padding:120px 6vw}
+#servicos .s-eyebrow{color:rgba(255,255,255,.2)}
+#servicos .s-heading{color:var(--white)}
+#servicos .s-heading em{color:rgba(255,255,255,.18)}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05)}
+@media(max-width:860px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.svc-grid{grid-template-columns:1fr}}
+
+.svc{background:#0e0e0e;padding:44px 28px;transition:background .3s}
+.svc:hover{background:#161616}
+.svc-n{font-family:var(--f-display);font-size:11px;font-weight:700;color:rgba(255,255,255,.1);margin-bottom:20px;letter-spacing:.05em}
+.svc-t{font-family:var(--f-display);font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-.01em}
+.svc-d{font-size:13px;color:rgba(255,255,255,.28);line-height:1.65;font-weight:300}
+
+/* CTA */
+#contato{
+  background:var(--yellow);padding:120px 6vw;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.cta-h{
+  font-family:var(--f-display);font-size:clamp(36px,6.5vw,88px);
+  font-weight:800;letter-spacing:-.04em;line-height:.92;color:var(--black);margin-bottom:44px;
+}
+.cta-h em{font-style:italic;font-weight:400;opacity:.4}
+.btn-dark{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--black);color:var(--white);
+  font-family:var(--f-display);font-size:13px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  padding:16px 40px;border-radius:2px;transition:opacity .2s,transform .2s;
+}
+.btn-dark:hover{opacity:.82;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{
+  background:var(--black);border-top:1px solid rgba(255,255,255,.05);
+  padding:32px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+footer img{height:20px;opacity:.45;display:block}
+.fc{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.03em}
+.fs{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.08em;text-transform:uppercase}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.r.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+</style>
 </head>
+<body>
 
-  <body>
-    <div id="root"></div>
-  </body>
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-text">VOLTZ<b>.</b></div>
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <img src="raio.png" alt="Voltz Digital">
+  </a>
+  <button class="hamburger" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#contato" class="nav-cta">Fale conosco</a></li>
+  </ul>
+</nav>
+
+<div class="mobile-menu" id="mob">
+  <a href="#portfolio" class="mob-link">Portfólio</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#contato" class="mob-link">Fale conosco</a>
+</div>
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <p class="hero-tag">Agência de Performance Digital</p>
+  <h1 class="hero-name">VOLTZ<span class="dot">.</span></h1>
+  <p class="hero-tagline">Projetos que aceleram negócios.</p>
+  <div class="hero-cta-row">
+    <a href="#portfolio" class="btn-primary">Ver projetos</a>
+    <a href="#contato" class="btn-ghost">Fale conosco</a>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-track"></div>
+  </div>
+</section>
+
+<div id="stats">
+  <div class="stat-item r">
+    <div class="stat-n">+20</div>
+    <div class="stat-l">Projetos entregues</div>
+  </div>
+  <div class="stat-item r d1">
+    <div class="stat-n">4</div>
+    <div class="stat-l">Serviços especializados</div>
+  </div>
+  <div class="stat-item r d2">
+    <div class="stat-n">3×</div>
+    <div class="stat-l">Resultado médio</div>
+  </div>
+  <div class="stat-item r d3">
+    <div class="stat-n">100%</div>
+    <div class="stat-l">Foco em performance</div>
+  </div>
+</div>
+
+<section id="portfolio">
+  <p class="s-eyebrow r">Cases</p>
+  <h2 class="s-heading r d1">Nossos <em>projetos</em></h2>
+  <div class="cases-grid">
+    <div class="cc r">
+      <span class="cc-tag">Tráfego Pago</span>
+      <div class="cc-cat">Bella Pizza · Meta Ads</div>
+      <h3 class="cc-name">Bella Pizza</h3>
+      <p class="cc-body">Campanha no Instagram focada em delivery local. Aumento expressivo em 45 dias.</p>
+      <div class="cc-num">+180%</div>
+      <div class="cc-unit">pedidos</div>
+      <a href="bella-pizza.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
+    </div>
+
+
+    <div class="cc r d1">
+      <span class="cc-tag">Landing Page</span>
+      <div class="cc-cat">FitPro Academy · Landing Page</div>
+      <h3 class="cc-name">FitPro Academy</h3>
+      <p class="cc-body">Página de alta conversão para captação de alunos com copy focado em resultado.</p>
+      <div class="cc-num">3×</div>
+      <div class="cc-unit">matrículas</div>
+      <a href="fitpro.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
+    </div>
+
+    <div class="cc r d1">
+      <span class="cc-tag">Landing Page</span>
+      <div class="cc-cat">Consultorio · Landing Page</div>
+      <h3 class="cc-name">Nutrologa</h3>
+      <p class="cc-body">Página de alta conversão para captação de Pacientes com copy focado em resultado.</p>
+      <div class="cc-num">3×</div>
+      <div class="cc-unit">matrículas</div>
+      <a href="BIA.html" target="_blank" class="cc-cta">Ver projeto ↗</a>
+    </div>
+
+</section>
+<section id="portfolio">
+<section id="servicos">
+  <p class="s-eyebrow r">O que fazemos</p>
+  <h2 class="s-heading r d1">Nossos <em>serviços</em></h2>
+  <div class="svc-grid">
+    <div class="svc r">
+      <div class="svc-n">01</div>
+      <h3 class="svc-t">Tráfego Pago</h3>
+      <p class="svc-d">Campanhas no Google, Meta e Instagram que atraem clientes prontos para comprar.</p>
+    </div>
+    <div class="svc r d1">
+      <div class="svc-n">02</div>
+      <h3 class="svc-t">Sites Profissionais</h3>
+      <p class="svc-d">Sites rápidos, modernos e otimizados para converter visitantes em clientes.</p>
+    </div>
+    <div class="svc r d2">
+      <div class="svc-n">03</div>
+      <h3 class="svc-t">Landing Pages</h3>
+      <p class="svc-d">Páginas focadas em uma única ação com copy e design para maximizar conversões.</p>
+    </div>
+    <div class="svc r d3">
+      <div class="svc-n">04</div>
+      <h3 class="svc-t">Mini Sites</h3>
+      <p class="svc-d">Presença digital rápida, profissional e integrada ao WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <h2 class="cta-h r">Seu negócio<br>é o <em>próximo.</em></h2>
+  <a href="https://wa.me/5511939300263" class="btn-dark r d1">⚡ Falar no WhatsApp</a>
+</section>
+
+<footer>
+  <img src="raio.png" alt="Voltz Digital">
+  <span class="fc">© 2026 Voltz Digital. Todos os direitos reservados.</span>
+  <span class="fs">@voltz.digital</span>
+</footer>
+
+<script>
+// Loader
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('done'),2000);
+});
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+
+// Hamburger
+const ham=document.getElementById('ham');
+const mob=document.getElementById('mob');
+ham.addEventListener('click',()=>{
+  const open=mob.classList.toggle('open');
+  const sp=ham.querySelectorAll('span');
+  if(open){
+    sp[0].style.cssText='transform:rotate(45deg) translate(4.5px,4.5px)';
+    sp[1].style.opacity='0';
+    sp[2].style.cssText='transform:rotate(-45deg) translate(4.5px,-4.5px)';
+  } else {
+    sp.forEach(s=>s.style.cssText='');
+  }
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mob.classList.remove('open');
+  ham.querySelectorAll('span').forEach(s=>s.style.cssText='');
+}));
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}
+  });
+},{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+</script>
+</body>
 </html>

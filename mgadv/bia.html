@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Maria Beatriz Leme Monteiro | Nutróloga & Médica do Esporte</title>
+ <link rel="icon" href="img/favicon.png">
+ 
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Apple-style system font stack + Playfair for display -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d1d1f;
+  --ink2: #424245;
+  --ink3: #6e6e73;
+  --ink4: #aeaeb2;
+  --bg: #fbfbfd;
+  --bg2: #f5f5f7;
+  --bg3: #e8e8ed;
+  --white: #ffffff;
+  --gold: #b8872a;
+  --gold-light: #c9993c;
+  --gold-pale: #f5edd8;
+  --green: #25D366;
+  --blue: #1a73e8;
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; 
+  top: 0; left: 0; right: 0; 
+  z-index: 200;
+
+  height: 52px;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+
+  padding: 0 32px;
+
+  background: rgba(10,10,10,0.6); /* 👈 dark glass */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-logo {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .78rem; font-weight: 600;
+  letter-spacing: .04em;  color: rgba(255,255,255,0.9); text-decoration: none;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: .72rem; font-weight: 400; letter-spacing: .01em;
+   color: rgba(255,255,255,0.7); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: #d4af37;; }
+.nav-cta {
+  background: var(--gold); color: var(--white);
+  padding: 8px 20px; border-radius: 980px;
+  font-size: .72rem; font-weight: 500; letter-spacing: .02em;
+  text-decoration: none; transition: background .2s, transform .15s;
+}
+.nav-cta:hover { background: var(--gold-light); transform: scale(1.02); }
+
+/* ─── HERO ─── */
+
+
+
+.hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+ background-position: 70% center; /* ajusta foco da médica */
+  background:
+    linear-gradient(
+      to right,
+      #000 0%,
+      #000 50%,
+      rgba(0,0,0,0.9) 65%,
+      rgba(0,0,0,0.4) 80%,
+      rgba(0,0,0,0) 100%
+    ),
+    url('bia1.jpg') right center / cover no-repeat;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    background-position: right center;
+  }
+
+  .hero-left {
+    padding: 80px 40px;
+  }
+}
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 60px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        rgba(0,0,0,0.85) 40%,
+        rgba(0,0,0,0.4) 70%,
+        rgba(0,0,0,0) 100%
+      ),
+      url('bia1.jpg') center top / cover no-repeat;
+  }
+
+  .hero-left {
+    padding: 60px 20px;
+  }
+}
+
+/* TEXTO */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 120px 64px 80px;
+  max-width: 600px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .65rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 20px; height: 1px; background: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 5.5vw, 5.6rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+
+  color: rgba(255,255,255,0.35); /* título */
+
+  text-shadow:
+    0 2px 12px rgba(0,0,0,0.45),
+    0 0 40px rgba(0,0,0,0.25); /* profundidade mais suave */
+
+  margin-bottom: 24px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: #d4af37; /* dourado mais premium */
+
+  text-shadow:
+    0 0 12px rgba(212,175,55,0.35),
+    0 0 30px rgba(212,175,55,0.15);
+
+  letter-spacing: 0.02em; /* melhora leitura do itálico */
+}
+
+.hero-desc {
+  font-size: .95rem; line-height: 1.7;  color: rgba(255,255,255,0.65);
+  max-width: 400px; margin-bottom: 44px;
+}
+.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--ink); color: var(--white);
+  padding: 14px 28px; border-radius: 980px;
+  font-size: .78rem; font-weight: 500; letter-spacing: .02em;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-primary:hover { background: #2d2d2f; transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.btn-wa {
+  background: var(--green); color: var(--white);
+  padding: 14px 28px; border-radius: 980px;
+  font-size: .78rem; font-weight: 500; letter-spacing: .02em;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.btn-wa:hover { background: #1ebe5a; transform: scale(1.02); }
+.btn-ghost {
+  color:rgba(255,255,255,0.65); font-size: .78rem; font-weight: 400;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.btn-ghost:hover { color: var(--ink); }
+.btn-ghost::after { content: '→'; font-size: .9em; }
+
+/* ===== HERO RIGHT ===== */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+
+/* imagem */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+  display: block;
+}
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0) 60%,
+    rgba(0,0,0,0.4) 75%,
+    rgba(0,0,0,0.9) 100%
+  );
+
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+
+    min-height: 100svh;
+
+    background:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        rgba(0,0,0,0.85) 35%,
+        rgba(0,0,0,0.5) 60%,
+        rgba(0,0,0,0.2) 80%,
+        rgba(0,0,0,0) 100%
+      ),
+      url('bia1.jpg') center top / cover no-repeat;
+  }
+
+  .hero-right {
+    display: none; /* 👈 remove o bloco separado */
+  }
+
+  .hero-left {
+    padding: 100px 20px 60px;
+  }
+
+}
+
+
+.stat-pill {
+  background: rgba(255, 255, 255, 0.15); /* transparência */
+  backdrop-filter: blur(12px);           /* efeito vidro */
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+
+  padding: 12px 20px;
+  min-width: 120px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.stat-num {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff; /* branco pra contrastar com fundo */
+}
+
+.stat-lbl {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+.crm-tag {
+  position: absolute; top: 20px; right: 20px; z-index: 3;
+  background: rgba(255,255,255,.88); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: .6rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink3); line-height: 1.7;
+}
+
+/* ─── TICKER ─── */
+.ticker {
+  background: var(--gold); overflow: hidden; padding: 11px 0; white-space: nowrap;
+}
+.ticker-track {
+  display: inline-flex; animation: ticker 30s linear infinite;
+}
+.ticker-item {
+  font-size: .72rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--white);
+  padding: 0 40px; display: inline-flex; align-items: center; gap: 40px;
+}
+.ticker-dot { width: 4px; height: 4px; background: rgba(255,255,255,.5); border-radius: 50%; flex-shrink: 0; }
+@keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ─── SECTIONS ─── */
+.section { padding: 96px 64px; }
+.sec-eyebrow {
+  font-size: .65rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.sec-eyebrow::before { content:''; width: 20px; height: 1px; background: var(--gold); }
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+  color: var(--ink);
+}
+
+/* ─── ABOUT ─── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+}
+.about-body {
+  font-size: .9rem; line-height: 1.8; color: var(--ink2); margin-top: 20px;
+}
+.about-body p + p { margin-top: 14px; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.tag {
+  background: var(--gold-pale); color: var(--gold);
+  padding: 6px 16px; border-radius: 980px;
+  font-size: .68rem; font-weight: 500; letter-spacing: .06em;
+}
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.acard {
+  background: var(--bg2); padding: 32px 28px;
+  border-radius: 0;
+  transition: background .2s;
+}
+.acard:hover { background: var(--bg3); }
+.acard:first-child { border-radius: var(--radius) var(--radius-sm) var(--radius-sm) 0; }
+.acard:nth-child(2) { border-radius: var(--radius-sm) var(--radius) 0 var(--radius-sm); }
+.acard:nth-child(3) { border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius); }
+.acard:last-child { border-radius: var(--radius-sm) 0 var(--radius) var(--radius-sm); }
+.acard.gold { background: var(--gold); }
+.acard.gold h3, .acard.gold p { color: var(--white); }
+.acard-icon { font-size: 1.4rem; margin-bottom: 14px; }
+.acard h3 {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .88rem; font-weight: 600; color: var(--ink); margin-bottom: 6px;
+}
+.acard p { font-size: .78rem; color: var(--ink3); line-height: 1.6; }
+
+/* ─── SPECS ─── */
+.specs-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 48px;
+}
+.spec {
+  background: var(--bg2); padding: 40px 28px;
+  border-radius: 0; position: relative; overflow: hidden;
+  transition: background .25s;
+}
+.spec:first-child { border-radius: var(--radius) 0 0 0; }
+.spec:nth-child(4) { border-radius: 0 var(--radius) 0 0; }
+.spec:nth-last-child(4) { border-radius: 0 0 0 var(--radius); }
+.spec:last-child { border-radius: 0 0 var(--radius) 0; }
+.spec:hover { background: var(--ink); }
+.spec:hover h3, .spec:hover p { color: var(--white); }
+.spec-num {
+  position: absolute; top: -8px; right: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; color: rgba(0,0,0,.04); line-height: 1; pointer-events: none;
+}
+.spec-icon { font-size: 1.5rem; margin-bottom: 16px; }
+.spec h3 {
+  font-size: .82rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;
+}
+.spec p { font-size: .75rem; color: var(--ink3); line-height: 1.65; }
+
+/* ─── Quote ─── */
+.quote-box {
+  border-left: 3px solid var(--gold);
+  padding-left: 16px;
+  margin-bottom: 28px;
+}
+
+.quote-box p {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+}
+.quote-box p::before {
+  content: "“";
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-right: 4px;
+}
+
+/* ─── MEDIA / CAROUSEL ─── */
+.media-section { background: var(--ink); padding: 80px 0; overflow: hidden; }
+.media-header {
+  padding: 0 64px; margin-bottom: 32px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.media-header h2 { color: var(--white); }
+.media-header .sec-eyebrow { color: rgba(184,135,42,.8); }
+.media-header .sec-eyebrow::before { background: rgba(184,135,42,.8); }
+.view-all-link {
+  color: rgba(255,255,255,.5); font-size: .7rem; letter-spacing: .1em;
+  text-decoration: none; transition: color .2s;
+}
+.view-all-link:hover { color: var(--white); }
+
+.carousel-outer { overflow: hidden; padding: 8px 64px 20px; cursor: grab; }
+.carousel-outer:active { cursor: grabbing; }
+.carousel-track {
+  display: flex; gap: 12px;
+  transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
+}
+.vid-card {
+  flex: 0 0 280px; background: #1d1d1f; border-radius: 14px;
+  overflow: hidden; text-decoration: none; position: relative;
+  transition: transform .25s, box-shadow .25s;
+  user-select: none;
+}
+.vid-card:hover { transform: scale(1.03); box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 2; }
+.vid-thumb {
+  position: relative; aspect-ratio: 16/9; overflow: hidden; background: #2d2d2f;
+}
+.vid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.vid-card:hover .vid-thumb img { transform: scale(1.06); }
+.vid-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.72) 100%);
+}
+.vid-plat {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(8px);
+  padding: 4px 10px; border-radius: 980px;
+  font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.8);
+}
+.vid-dur {
+  position: absolute; bottom: 10px; right: 10px;
+  font-size: .68rem; color: rgba(255,255,255,.8);
+  background: rgba(0,0,0,.4); padding: 2px 7px; border-radius: 4px;
+}
+.play-ring {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255,255,255,.3); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.vid-card:hover .play-ring { background: rgba(184,135,42,.2); border-color: var(--gold); }
+.play-tri { color: #fff; font-size: .85rem; margin-left: 2px; }
+.vid-info { padding: 14px 16px 18px; }
+.vid-info h3 {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .82rem; font-weight: 500; color: var(--white); line-height: 1.4; margin-bottom: 4px;
+}
+.vid-source { font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+
+.carousel-dots {
+  display: flex; justify-content: center; gap: 5px; margin-top: 20px;
+}
+.dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,.2); border: none; cursor: pointer;
+  transition: background .2s, width .2s;
+}
+.dot.active { background: var(--gold); width: 18px; border-radius: 3px; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,.15);
+  background: rgba(29,29,31,.8); backdrop-filter: blur(8px);
+  border-radius: 50%; color: #fff; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s, transform .2s;
+  z-index: 10;
+}
+.carousel-btn:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-50%) scale(1.08); }
+.carousel-prev { left: 16px; }
+.carousel-next { right: 16px; }
+
+/* ─── REVIEWS ─── */
+.reviews-section { background: var(--bg2); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 48px; }
+
+.reviews-header {
+  display: flex;
+  flex-direction: column; /* 👈 empilha */
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rev-card { background: var(--white); padding: 36px 32px; border-radius: 0; }
+.rev-card:first-child { border-radius: var(--radius) 0 0 0; }
+.rev-card:nth-child(3) { border-radius: 0 var(--radius) 0 0; }
+.rev-card:nth-child(4) { border-radius: 0 0 0 var(--radius); }
+.rev-card:last-child { border-radius: 0 0 var(--radius) 0; }
+.stars { display: flex; gap: 2px; margin-bottom: 18px; }
+.star { color: var(--gold); font-size: .8rem; }
+.rev-text {
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: .88rem;
+  line-height: 1.8; color: var(--ink2); margin-bottom: 24px;
+}
+.rev-author { display: flex; align-items: center; gap: 12px; }
+.av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold-pale); display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--gold);
+}
+.av-name { font-size: .8rem; font-weight: 600; color: var(--ink); }
+.av-date { font-size: .66rem; color: var(--ink4); margin-top: 1px; }
+.rating-bar {
+  display: inline-flex;  /* 👈 ESSENCIAL (não usar flex normal) */
+  align-items: flex-start;
+  gap: 10px;
+
+  width: auto;           /* 👈 impede ocupar linha inteira */
+}
+
+.rating-big {
+  
+    display: inline-flex;  /* 👈 ESSENCIAL (não usar flex normal) */
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rating-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+   text-align: left;  
+}
+
+.stars {
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.rating-wrapper {
+  display: flex;
+  justify-content: flex-end; /* 👈 joga tudo pra direita */
+}
+.rating-text {
+  font-size: 0.72rem;
+  color: var(--ink3);
+}
+
+.doc-link {
+  font-size: 0.72rem;
+  color: var(--ink2);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.doc-link:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+
+
+/* ─── FAQ ─── */
+/* SECTION */
+.faq-section  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 100px 20px;
+}
+
+
+/* GRID */
+.faq-grid {
+  display: flex;
+  flex-direction: column;   /* tudo em coluna */
+  align-items: center;      /* centraliza tudo */
+  text-align: center;
+  
+  max-width: 700px;
+  width: 100%;
+}
+}
+
+/* LADO ESQUERDO */
+
+.faq-left h2 {
+  font-size: 3rem;
+  line-height: 1.05;
+  color: #fff;
+  font-weight: 500;
+}
+
+.sec-eyebrow {
+  color: #c89b3c;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+
+/* LISTA */
+
+.faq-list {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 40px;
+}
+.faq-a {
+font-size: 0.9rem;
+  line-height: 1.5;
+  }
+  
+/* CARD */
+.faq-item {
+    background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.faq-item:hover {
+   background: rgba(255,255,255,0.05);
+}
+
+/* PERGUNTA */
+.faq-q 
+{
+  width: 100%;
+  background: none;
+  border: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 0.95rem;
+  color: #222;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* ÍCONE */
+.faq-icon {
+   width: 14px;
+  height: 14px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* RESPOSTA */
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+
+  font-size: 0.9rem;
+  color: #222;
+  text-align: left;
+}
+
+/* ABERTO */
+.faq-item.active {
+  background: rgba(200,155,60,0.08);
+  border: 1px solid rgba(200,155,60,0.3);
+}
+
+.faq-item.active .faq-a {
+  max-height: 200px;
+  margin-top: 8px;
+}
+
+/* BOTÃO */
+
+.faq-cta {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c89b3c, #e0b84f);
+  color: #000;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.faq-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(200,155,60,0.3);
+}
+
+@media (max-width: 768px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .faq-left h2 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .faq-left {
+    text-align: center;
+  }
+}
+
+/* ─── CTA BAND ─── */
+.cta-band {
+  position: relative;
+  background: url('FUNDO.PNG') center/cover no-repeat;
+  height: 420px;
+
+  display: flex;
+  align-items: center;     /* vertical */
+  justify-content: center; /* horizontal */
+  text-align: center;
+
+  padding: 20px;
+}
+
+.cta-overlay {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 700px;
+}
+
+.cta-band h2 {
+  color: #fff;
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+}
+
+.cta-band p {
+  color: rgba(255,255,255,0.85);
+}
+
+/* ─── SOCIAL STRIP ─── */
+.social-strip {
+  background: #0a0c10; padding: 52px 64px;
+  border-top: 1px solid rgba(255,255,255,.05);
+  text-align: center;
+}
+.social-strip h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+  color: var(--white); margin-bottom: 6px; letter-spacing: -.01em;
+}
+.social-strip p { font-size: .82rem; color: rgba(255,255,255,.35); margin-bottom: 32px; }
+.pill-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 980px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  color: var(--white); text-decoration: none;
+  font-family: 'Instrument Sans', sans-serif; font-size: .78rem; font-weight: 500;
+  letter-spacing: .02em; transition: background .25s, border-color .25s, transform .2s;
+  backdrop-filter: blur(8px);
+}
+.pill-btn:hover { transform: translateY(-2px); }
+.pill-btn.ig:hover { background: rgba(131,58,180,.18); border-color: rgba(131,58,180,.5); }
+.pill-btn.wa:hover { background: rgba(37,211,102,.12); border-color: rgba(37,211,102,.4); }
+.pill-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.pill-icon.ig { background: linear-gradient(135deg,#833ab4 0%,#fd1d1d 50%,#fcb045 100%); }
+.pill-icon.wa { background: var(--green); }
+.pill-sub { font-size: .65rem; color: rgba(255,255,255,.4); letter-spacing: .06em; }
+
+/* ─── FOOTER ─── */
+footer { background: #0a0c10; padding: 56px 64px 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+.footer-brand {
+  font-family: 'Instrument Sans', sans-serif; font-weight: 600; font-size: .9rem;
+  color: var(--white); margin-bottom: 12px; letter-spacing: .02em;
+}
+.footer-sub { font-size: .76rem; color: rgba(255,255,255,.35); line-height: 1.75; max-width: 260px; }
+.footer-crm { margin-top: 18px; font-size: .6rem; letter-spacing: .1em; color: rgba(255,255,255,.18); text-transform: uppercase; }
+.footer-col h4 {
+  font-family: 'Instrument Sans', sans-serif; font-weight: 600; font-size: .7rem;
+  letter-spacing: .14em; color: rgba(255,255,255,.45); text-transform: uppercase; margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 9px; }
+.footer-col a { font-size: .76rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  margin-top: 48px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.06);
+  display: flex; justify-content: space-between;
+}
+.footer-bottom p { font-size: .65rem; color: rgba(255,255,255,.2); letter-spacing: .04em; }
+
+/* ─── WA FLOAT ─── */
+.wa-float-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 500;
+  display: flex; align-items: center; gap: 12px;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 12px 20px 12px 14px;
+  border-radius: 980px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(0,0,0,.28);
+  transition: transform .2s, box-shadow .2s;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.wa-float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.36);
+}
+.wa-float-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wa-float-label { display: flex; flex-direction: column; line-height: 1.3; }
+.wa-float-sub { font-size: .58rem; color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase; }
+.wa-float-main { font-size: .76rem; font-weight: 600; }
+
+/* ─── FADE-UP ─── */
+.fu { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.fu.in { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+ 
+  .hero-left { padding: 100px 24px 64px; position: relative;
+  z-index: 2;}
+  .section { padding: 72px 24px; }
+  /* about handled inline */
+  .specs-grid { grid-template-columns: 1fr 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .cta-band { grid-template-columns: 1fr; gap: 40px; padding: 72px 24px;
+ 
+
+  }
+ 
+ .cta-btns {
+  position: absolute;
+  bottom: 30px;          /* distância do fundo */
+  left: 50%;             /* vai pro meio */
+  transform: translateX(-50%); /* centraliza perfeitamente */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centraliza os botões */
+  gap: 12px;
+}
+ 
+
+  footer { padding: 48px 24px 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 8px; padding: 18px 0; }
+  .locais-inner { grid-template-columns: 1fr; } 
+  .locais-left, .locais-right { padding: 48px 24px; } 
+  .locais-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .vid-card { flex: 0 0 76vw !important; }
+  .media-header { padding: 0 24px; }
+  .carousel-outer { padding: 8px 24px 16px; }
+}
+
+/* WA SVG */
+.wa-svg { fill: white; }
+
+
+/* logo-pill */
+
+
+.logo-pill {
+  background: transparent;
+  border: none;
+  padding: 15px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-pill img {
+  filter: grayscale(100%) brightness(0) contrast(200%);
+
+ 
+}
+  
+
+
+
+/* ─── LOCAIS REDESIGN ─── */
+
+.locais-section {
+   background: #000;
+  color: #fff;
+  position: relative;
+}
+.locais-bg {
+ position: absolute;
+  inset: 0;
+  z-index: 0;
+   background:
+    radial-gradient(circle at 20% 30%, rgba(184,135,42,0.15), transparent 40%),
+    #000;
+}
+}
+.locais-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 680px;
+}
+.locais-left {
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid rgba(255,255,255,.06);
+}
+.locais-right {
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.locais-header { margin-bottom: 52px; }
+.locais-header .sec-eyebrow { color: rgba(184,135,42,.7); }
+.locais-header .sec-eyebrow::before { background: rgba(184,135,42,.7); }
+.locais-header h2 { color: var(--white); margin-top: 8px; }
+
+/* Location item */
+.loc-item {
+  display: flex; flex-direction: column; gap: 0;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  position: relative;
+}
+.loc-item:first-child { border-top: 1px solid rgba(255,255,255,.07); }
+.loc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; color: rgba(255,255,255,.03);
+  position: absolute; right: 0; top: 0; line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.loc-badge {
+  font-size: .6rem; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.loc-badge::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); display: block;
+}
+.loc-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700; color: var(--white);
+  line-height: 1.1; letter-spacing: -.01em; margin-bottom: 10px;
+}
+.loc-addr {
+  font-size: .78rem; color: rgba(255,255,255,.38);
+  line-height: 1.65; margin-bottom: 16px;
+}
+.loc-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  color: var(--gold); font-size: .7rem; font-weight: 600;
+  text-decoration: none; letter-spacing: .06em; text-transform: uppercase;
+  transition: gap .2s, opacity .2s;
+}
+.loc-link:hover { gap: 12px; opacity: .8; }
+.loc-link-arrow { font-size: .85rem; transition: transform .2s; }
+.loc-link:hover .loc-link-arrow { transform: translateX(3px); }
+
+/* MAP PANEL - right side */
+.map-tabs { display: flex; gap: 3px; margin-bottom: 20px; }
+.map-tab {
+  flex: 1; padding: 10px 14px; background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 8px;
+  cursor: pointer; text-align: center; transition: all .25s;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+}
+.map-tab.active {
+  background: rgba(184,135,42,.15); border-color: rgba(184,135,42,.4);
+  color: var(--gold);
+}
+.map-frame-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px; /* 🔥 define altura real */
+  border-radius: 16px;
+  overflow: hidden;
+}
+.map-frame-wrap iframe {
+   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.map-frame { display: none; }
+.map-frame.active { display: block; }
+
+/* overlay tint on map for brand cohesion */
+.map-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(29,29,31,.1) 0%, transparent 40%);
+  z-index: 1;
+}
+.map-cta-strip {
+  margin-top: 16px; display: flex; gap: 10px;
+}
+.map-btn {
+  flex: 1; padding: 13px 18px; border-radius: 12px;
+  text-align: center; text-decoration: none;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; transition: all .2s;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.map-btn.primary {
+  background: var(--gold); color: var(--white);
+}
+.map-btn.primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.map-btn.secondary {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.65);
+}
+.map-btn.secondary:hover { background: rgba(255,255,255,.1); color: var(--white); }
+#locais {
+  background: #000 !important;
+}
+ <link rel="icon" href="favicon.png">
+ 
+</style>
+</head>
+<body>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Dra. Maria Beatriz Leme</a>
+  
+
+ 
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#locais">Locais</a></li>
+    <li><a href="#midia">Mídia</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+  </ul>
+  <a href="https://www.doctoralia.com.br/maria-beatriz-leme-monteiro/nutrologo-medico-do-esporte/sao-paulo" target="_blank" class="nav-cta">Agendar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Nutróloga · Médica do Esporte · UNIFESP · CRM 134591 SP</div>
+    <h1>
+      PERFORMANCE<br>
+      <em>começa</em><br>
+      POR DENTRO
+    </h1>
+    <p class="hero-desc">Nutrologia esportiva de alta performance para atletas e pessoas que levam o corpo a sério. Consultas presenciais em São Paulo e por videochamada.</p>
+    
+	
+	
+<div class="hero-actions">
+      <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" class="btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar via WhatsApp
+      </a>
+      <a href="https://www.doctoralia.com.br/maria-beatriz-leme-monteiro/nutrologo-medico-do-esporte/sao-paulo" target="_blank" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        Agendar via Doctoralia
+      </a>
+	  <p>
+      <a href="#sobre" class="btn-ghost">Conhecer mais</a></p>
+    </div>
+  </div>
+<div class="hero-right">
+  <img src="bia1.jpeg"" class="hero-img">
+</div>
+
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Nutrologia Esportiva<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Medicina do Esporte<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Alta Performance<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Suplementação Científica<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Composição Corporal<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Fisiologia do Exercício<span class="ticker-dot"></span></span>
+    <span class="ticker-item">UNIFESP · AMB<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Nutrologia Esportiva<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Medicina do Esporte<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Alta Performance<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Suplementação Científica<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Composição Corporal<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Fisiologia do Exercício<span class="ticker-dot"></span></span>
+    <span class="ticker-item">UNIFESP · AMB<span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="sobre" style="position:relative;padding:0;overflow:hidden;min-height:600px;">
+
+ <div style="position:absolute; inset:0; z-index:0;">
+  <img src="back.png"
+       alt="Consultório"
+       style="width:100%; height:100%; object-fit:cover; object-position:center;">
+</div>
+    <!-- Dark overlay with warm tint to match brand -->
+    <div style="position:absolute;inset:0;background:linear-gradient(120deg, rgba(245,240,230,.94) 0%, rgba(235,228,210,.88) 40%, rgba(200,180,140,.65) 100%);"></div>
+  </div>
+
+  <!-- Content on top -->
+  <div style="position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px;">
+
+    <!-- LEFT: Text -->
+    <div class="fu" style="padding:30px 64px;display:flex;flex-direction:column;justify-content:center;">
+      <!-- Logos badge row -->
+	  
+   <div style="display:flex;align-items:center;gap:20px;">
+
+  <!-- AMB -->
+  <div class="logo-pill">
+   <img src="uni_min.png" alt="UNIFESP"  style="height:20px;">
+   
+  </div>
+
+  <!-- divider -->
+  <div style="width:1px;height:15px;background:rgba(0,0,0,.15);"></div>
+
+  <!-- UNIFESP -->
+  <div class="logo-pill">
+    <img src="logo_amb2.png" alt="AMB"  style="height:30px;">
+  </div>
+  <!-- divider -->
+ 
+  
+</div>
+
+      <div class="sec-eyebrow" style="margin-bottom:14px;">Sobre a Dra. Beatriz</div>
+      <h2 style="font-size:clamp(2.2rem,3.5vw,3.4rem);line-height:.95;margin-bottom:22px;">MEDICINA DE ALTA<br>PERFORMANCE <em style="color:var(--gold);font-style:italic;">&amp;</em><br>SAÚDE</h2>
+
+      <p style="font-size:.82rem;color:var(--ink2);line-height:1.8;max-width:380px;margin-bottom:20px;">
+        Médica formada pela Universidade Federal de São Paulo (UNIFESP/EPM), com residência em Nutrologia e Medicina do Esporte.
+ </p>
+ <p style="font-size:.82rem;color:var(--ink2);line-height:1.8;max-width:380px;margin-bottom:20px;">
+Especialista pela AMB em ambas as áreas, com foco em nutrologia esportiva de alta performance, suplementação baseada em evidência e composição corporal avançada.
+</p><p style="font-size:.82rem;color:var(--ink2);line-height:1.8;max-width:380px;margin-bottom:20px;">
+Atende atletas profissionais, amadores exigentes e pessoas que buscam saúde e performance através da nutrição médica.
+     </p>
+
+      <!-- Quote -->
+     <div class="quote-box">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <p>
+    “A Residência em Medicina Esportiva da UNIFESP é atualmente coordenada pela Dra. Maria Beatriz.”
+  </p>
+</div>
+      
+
+      <div>
+        <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank"
+           style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);padding:14px 28px;border-radius:980px;font-size:.78rem;font-weight:500;letter-spacing:.02em;text-decoration:none;transition:background .2s;"
+           onmouseover="this.style.background='#2d2d2f'" onmouseout="this.style.background='var(--ink)'">
+          [AGENDE SUA CONSULTA]
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: 2x2 card grid -->
+    <div class="fu" style="padding:20px 56px 88px 40px;display:flex;align-items:center;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;">
+
+        <!-- Card 1: Especialista AMB -->
+        <div style="background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:28px 24px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 36px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="width:40px;height:40px;margin-bottom:16px;color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-3-3m0 0l3-3m-3 3h9M7 19H5a2 2 0 01-2-2V7a2 2 0 012-2h2M17 5h2a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></svg>
+          </div>
+          <h3 style="font-family:'Instrument Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;">Especialista AMB</h3>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.65;">Medicina do Exercício e do Esporte.</p>
+        </div>
+
+        <!-- Card 2: Referência Acadêmica -->
+        <div style="background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:28px 24px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 36px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="width:40px;height:40px;margin-bottom:16px;color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+          </div>
+          <h3 style="font-family:'Instrument Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;">Referência Acadêmica</h3>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.65;">Coordenadora de Residência na UNIFESP.</p>
+        </div>
+
+        <!-- Card 3: Performance Atleta -->
+        <div style="background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:28px 24px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 36px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="width:40px;height:40px;margin-bottom:16px;color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 style="font-family:'Instrument Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;">Performance Atleta</h3>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.65;">Estratégia personalizada para alta exigência.</p>
+        </div>
+
+        <!-- Card 4: Atendimento Híbrido -->
+        <div style="background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:28px 24px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 36px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="width:40px;height:40px;margin-bottom:16px;color:var(--gold);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 style="font-family:'Instrument Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;">Atendimento Híbrido</h3>
+          <p style="font-size:.78rem;color:var(--ink3);line-height:1.65;">Presencial em SP e Telemedicina.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="section" id="especialidades" style="background:var(--bg2);">
+  <div class="sec-eyebrow">O que tratamos</div>
+  <h2>ESPECIALIDADES</h2>
+  <div class="specs-grid">
+    <div class="spec fu"><span class="spec-num">01</span><div class="spec-icon">🏃</div><h3>Medicina do Esporte</h3><p>Avaliação completa com foco em performance, prevenção de lesões e recuperação otimizada.</p></div>
+    <div class="spec fu"><span class="spec-num">02</span><div class="spec-icon">🥗</div><h3>Nutrologia Esportiva</h3><p>Periodização nutricional individualizada alinhada ao treinamento e metas de cada atleta.</p></div>
+    <div class="spec fu"><span class="spec-num">03</span><div class="spec-icon">💊</div><h3>Suplementação</h3><p>Prescrição baseada em evidências. Eficácia, segurança e legalidade garantidas.</p></div>
+    <div class="spec fu"><span class="spec-num">04</span><div class="spec-icon">⚖️</div><h3>Composição Corporal</h3><p>Emagrecimento saudável, ganho de massa e controle de peso com acompanhamento contínuo.</p></div>
+  </div>
+</section>
+
+<!-- LOCAIS -->
+
+<section class="locais-section" id="locais">
+  <!-- background texture -->
+  <div class="locais-bg"> </div>
+
+  <div class="locais-inner">
+
+    <!-- LEFT: location list -->
+    <div class="locais-left">
+      <div class="locais-header">
+        <div class="sec-eyebrow">Onde nos encontrar</div>
+        <h2>LOCAIS DE<br>ATENDIMENTO</h2>
+      </div>
+
+      <!-- Loc 1 -->
+      <div class="loc-item">
+        <span class="loc-num">01</span>
+        <div class="loc-badge">Consultório 1</div>
+        <div class="loc-name">Hospital Moriah</div>
+        <div class="loc-addr">
+          Av. Miruna, 755<br>
+          Indianópolis · São Paulo · SP<br>
+          CEP 04084-002
+        </div>
+        <a href="https://maps.app.goo.gl/HwsgJQysF2LVEBs79" target="_blank" class="loc-link">
+          Ver no Google Maps
+          <span class="loc-link-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Loc 2 -->
+      <div class="loc-item">
+        <span class="loc-num">02</span>
+        <div class="loc-badge">Consultório 2</div>
+        <div class="loc-name">A1 Medicina Esportiva</div>
+        <div class="loc-addr">
+          R. Bento de Andrade, 39<br>
+          Jardim Paulista · São Paulo · SP
+        </div>
+        <a href="https://maps.app.goo.gl/ojgCRSwRRYK8wzvk9" target="_blank" class="loc-link">
+          Ver no Google Maps
+          <span class="loc-link-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Video/teleconsulta note -->
+      <div style="margin-top:32px;padding:20px 22px;background:rgba(184,135,42,.08);border:1px solid rgba(184,135,42,.2);border-radius:12px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(184,135,42,.9)" stroke-width="2"><rect x="2" y="7" width="15" height="14" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
+          <span style="font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(184,135,42,.9);">Teleconsulta disponível</span>
+        </div>
+        <p style="font-size:.76rem;color:rgba(255,255,255,.4);line-height:1.65;margin:0;">Para todo o Brasil e exterior — primeira consulta e acompanhamento online.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: interactive map -->
+    <div class="locais-right">
+      <!-- Tab switcher -->
+      <div class="map-tabs">
+        <div class="map-tab active" onclick="switchMap(0,this)">Hospital Moriah</div>
+        <div class="map-tab" onclick="switchMap(1,this)">A1 Medicina Esportiva</div>
+      </div>
+
+      <!-- Map frames -->
+      <div class="map-frame-wrap">
+
+        <div id="mapFrame0" class="map-frame active">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.6909823447513!2d-46.66533772399751!3d-23.615413024003757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5a6d590cb691%3A0x9e17cdd783b9f1c6!2sHospital%20Moriah%20-%20SP!5e0!3m2!1spt-BR!2sus!4v1776124506241!5m2!1spt-BR!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div id="mapFrame1" class="map-frame">
+         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.626846687052!2d-46.66643442544586!3d-23.581841778785694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59da9bbbdc93%3A0x6f53eb0d550546f3!2sCl%C3%ADnica%20A1%20Medicina%20Esportiva!5e0!3m2!1spt-BR!2sus!4v1776124592900!5m2!1spt-BR!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="map-overlay"></div>
+      </div>
+
+      <!-- CTA strip below map -->
+      <div class="map-cta-strip">
+        <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" class="map-btn primary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar via WhatsApp
+        </a>
+        <a id="mapDirectLink" href="https://maps.app.goo.gl/HwsgJQysF2LVEBs79" target="_blank" class="map-btn secondary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Como chegar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MEDIA -->
+<section class="media-section" id="midia">
+  <div class="media-header">
+    <div>
+      <div class="sec-eyebrow" style="color:rgba(184,135,42,.8)"><span style="width:20px;height:1px;background:rgba(184,135,42,.8);display:inline-block;"></span>&nbsp;Na mídia</div>
+      <h2 style="color:var(--white)">PODCASTS &amp;<br>ENTREVISTAS</h2>
+    </div>
+    <a href="https://www.youtube.com/@namontanha" target="_blank" class="view-all-link">Ver todos →</a>
+  </div>
+  <div style="position:relative;">
+    <button class="carousel-btn carousel-prev" onclick="slide(-1)">&#8592;</button>
+    <div class="carousel-outer" id="carouselOuter">
+      <div class="carousel-track" id="carouselTrack">
+	  
+	  <a class="vid-card" href="https://www.youtube.com/watch?v=2gJuZgBt4Aw&t=55s" target="_blank">
+          <div class="vid-thumb"><img src="https://img.youtube.com/vi/2gJuZgBt4Aw/maxresdefault.jpg" alt="" loading="lazy"><div class="vid-overlay"></div><div class="vid-plat">YouTube</div><div class="play-ring"><span class="play-tri">▶</span></div><div class="vid-dur">11:23</div></div>
+          <div class="vid-info"><h3>HealthCast #24 — Sports Nutrition</h3><div class="vid-source">Sua Saúde na Rede · 2023</div></div>
+        </a>
+		
+        <a class="vid-card" href="https://www.youtube.com/watch?v=xsEr3Qi_nUY" target="_blank">
+          <div class="vid-thumb"><img src="https://img.youtube.com/vi/xsEr3Qi_nUY/maxresdefault.jpg" alt="" loading="lazy"><div class="vid-overlay"></div><div class="vid-plat">YouTube · Podcast</div><div class="play-ring"><span class="play-tri">▶</span></div><div class="vid-dur">55:19</div></div>
+          <div class="vid-info"><h3>Nutrition and Endurance — Ep. 208 · FalaDoc</h3><div class="vid-source">Namontanha Podcast · 2025</div></div>
+        </a>
+        
+        <a class="vid-card" href="https://www.youtube.com/watch?v=loIzqgsWcso&t=97s" target="_blank">
+          <div class="vid-thumb"><img src="https://img.youtube.com/vi/loIzqgsWcso/maxresdefault.jpg" alt="" loading="lazy"><div class="vid-overlay"></div><div class="vid-plat">YouTube</div><div class="play-ring"><span class="play-tri">▶</span></div><div class="vid-dur">5:30</div></div>
+          <div class="vid-info"><h3>Lançamento do Instituto da Menopausa — Hospital Moriah</h3><div class="vid-source">Hospital Moriah · Nov 2025</div></div>
+        </a>
+        <a class="vid-card" href="https://www.youtube.com/watch?v=EAokJZRrvTU&t=290s" target="_blank">
+          <div class="vid-thumb"><img src="https://img.youtube.com/vi/EAokJZRrvTU/maxresdefault.jpg" alt="" loading="lazy"><div class="vid-overlay"></div><div class="vid-plat">YouTube</div><div class="play-ring"><span class="play-tri">▶</span></div><div class="vid-dur">8:45</div></div>
+          <div class="vid-info"><h3>Nutrologia e Endurance — Suplementação Esportiva</h3><div class="vid-source">YouTube · 2024</div></div>
+        </a>
+      </div>
+    </div>
+    <button class="carousel-btn carousel-next" onclick="slide(1)">&#8594;</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section reviews-section" id="depoimentos">
+  <div class="sec-eyebrow">Depoimentos</div>
+  <h2>O QUE DIZEM<br>OS PACIENTES</h2>
+   <div class="rating-content">
+   
+    <div class="rating-text">Avaliações na Doctoralia</div>
+	
+    <a href="https://www.doctoralia.com.br/maria-beatriz-leme-monteiro/nutrologo-medico-do-esporte/sao-paulo" target="_blank" class="doc-link">
+      Ver todas →
+	  </a>
+	   <div class="stars">★★★★★</div>
+	  <div class="reviews-grid">
+    <div class="rev-card fu">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">"Dra Maria Beatriz é uma excelente profissional. Sou paciente faz anos e mantenho meu tratamento devido resultado com excelência e comprometimento. Super indico e recomendo."</p>
+      <div class="rev-author"><div class="av">M</div><div><div class="av-name">Mércia</div><div class="av-date">Novembro 2024 · Doctoralia</div></div></div>
+    </div>
+    <div class="rev-card fu">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">"A Dra. Beatriz é excelente! Ao mesmo tempo em que é atenciosa e dedicada, ela é objetiva na medida certa ao entender a realidade do paciente. Extremamente competente."</p>
+      <div class="rev-author"><div class="av">P</div><div><div class="av-name">Paciente verificado</div><div class="av-date">Fevereiro 2024 · Doctoralia</div></div></div>
+    </div>
+    <div class="rev-card fu">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="rev-text">"Profissional excepcional, com vasto conhecimento em nutrição esportiva. As orientações transformaram minha performance nos treinos. Resultado visível em poucos meses."</p>
+      <div class="rev-author"><div class="av">A</div><div><div class="av-name">Atleta · Triathlon</div><div class="av-date">Doctoralia</div></div></div>
+    </div>
+  </div>
+ 
+</div>
+
+
+</section>
+
+<!-- FAQ -->
+
+
+
+<section class="section faq-section" id="faq">
+  <div class="sec-eyebrow">Dúvidas frequentes</div>
+  <h2>PERGUNTAS &amp;<br>RESPOSTAS</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Em quais idiomas a Dra. Maria Beatriz atende?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Português, inglês e francês.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quais métodos de pagamento são aceitos?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Cartão de crédito, débito, PIX, transferência e dinheiro.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que outros pacientes dizem?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Mais de 300 avaliações com média de 5 estrelas, destacando qualidade e resultados.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quais convênios são aceitos?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Care Plus e consultas particulares.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">A consulta pode ser online?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Sim, para todo o Brasil e exterior, incluindo primeira consulta e acompanhamento.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como funciona o reembolso?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Fornecemos nota fiscal e relatório para solicitação ao convênio.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como agendar uma consulta?<svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Pela Doctoralia ou via WhatsApp com nossa equipe. <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" style="color:var(--gold)">Fale agora →</a></div></div>
+  </div>
+  <div style="margin-top:32px;">
+    <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--white);padding:14px 28px;border-radius:980px;font-size:.78rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s;" onmouseover="this.style.background='#c9993c';this.style.transform='scale(1.02)'" onmouseout="this.style.background='var(--gold)';this.style.transform='scale(1)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar com nossa equipe
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" id="contato">
+ <div class="cta-overlay">
+  
+    <h2 style="color:var(--white)">Pronto para levar sua<br><em>performance</em><br>ao próximo nível?</h2>
+    <p>Agende sua consulta presencial em São Paulo ou por videochamada.</p> 
+	<p>Atendimento personalizado, baseado em ciência e resultado.</p>
+  </div>
+  
+</section>
+
+<!-- SOCIAL -->
+<div class="social-strip">
+  <h3>Acompanhe o conteúdo<br><em style="font-style:italic;color:var(--gold)">científico e prático</em></h3>
+  <p>Dicas de nutrição esportiva, performance e saúde.</p>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+    <a href="https://www.instagram.com/mariabeatriz.leme/" target="_blank" class="pill-btn ig">
+      <div class="pill-icon ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      <div><div class="pill-sub">INSTAGRAM</div><div>@mariabeatriz.leme</div></div>
+    </a>
+    <a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" class="pill-btn wa">
+      <div class="pill-icon wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+      <div><div class="pill-sub">WHATSAPP</div><div>Agende sua consulta</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Dra. Maria Beatriz<br>Leme Monteiro</div>
+      <p class="footer-sub">Nutróloga e Médica do Esporte.</p> 
+	  <p>Coordenadora do Ambulatório de Nutrologia e Performance — EPM UNIFESP. S</p>
+      <p class="footer-crm">CRM 134591 SP · RQE 72960 · RQE 72961</p>
+    </div>
+    <div class="footer-col"><h4>Navegação</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#especialidades">Especialidades</a></li><li><a href="#midia">Mídia</a></li><li><a href="#depoimentos">Depoimentos</a></li></ul></div>
+    <div class="footer-col"><h4>Agendamento</h4><ul><li><a href="https://www.doctoralia.com.br/maria-beatriz-leme-monteiro/nutrologo-medico-do-esporte/sao-paulo" target="_blank">Doctoralia</a></li><li><a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank">WhatsApp</a></li><li><a href="#contato"></a></li></ul></div>
+    <div class="footer-col"><h4>Redes</h4><ul><li><a href="https://www.instagram.com/mariabeatriz.leme/" target="_blank">Instagram</a></li><li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dra. Maria Beatriz Leme Monteiro · Todos os direitos reservados</p>
+    <p>Medicina do Esporte · Nutrologia · São Paulo</p>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/5511981698355?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Beatriz." target="_blank" class="wa-float-btn" title="WhatsApp">
+  <div class="wa-float-icon">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+  <div class="wa-float-label">
+    <span class="wa-float-sub">WhatsApp</span>
+    <span class="wa-float-main">Agende sua consulta</span>
+  </div>
+</a>
+
+
+<script>
+// Scroll fade
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), 0);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fu').forEach((el,i) => {
+  el.style.transitionDelay = (i % 4 * 0.08) + 's';
+  obs.observe(el);
+});
+
+// Carousel
+const track = document.getElementById('carouselTrack');
+const outer = document.getElementById('carouselOuter');
+const dotsEl = document.getElementById('carouselDots');
+const cards = track.querySelectorAll('.vid-card');
+const GAP = 12;
+let cur = 0, maxSlide = 0;
+
+function metrics() {
+  const cw = cards[0].offsetWidth;
+  const vis = Math.floor(outer.offsetWidth / (cw + GAP));
+  maxSlide = Math.max(0, cards.length - vis);
+}
+function buildDots() {
+  dotsEl.innerHTML = '';
+  for(let i = 0; i <= maxSlide; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0?' active':'');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+}
+function goTo(idx) {
+  metrics();
+  cur = Math.max(0, Math.min(idx, maxSlide));
+  track.style.transform = `translateX(-${cur * (cards[0].offsetWidth + GAP)}px)`;
+  dotsEl.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+}
+function slide(dir) { goTo(cur + dir); }
+window.addEventListener('load', () => { metrics(); buildDots(); });
+window.addEventListener('resize', () => { metrics(); buildDots(); goTo(0); });
+
+// Drag
+let isDrag=false,startX=0,startLeft=0,dragged=false;
+outer.addEventListener('mousedown', e => {
+  isDrag=true; dragged=false;
+  startX = e.pageX - outer.offsetLeft;
+  startLeft = parseInt(track.style.transform.replace('translateX(','').replace('px)','')) || 0;
+  track.style.transition='none';
+});
+window.addEventListener('mousemove', e => {
+  if(!isDrag) return; e.preventDefault();
+  dragged=true;
+  track.style.transform = `translateX(${startLeft + e.pageX - outer.offsetLeft - startX}px)`;
+});
+window.addEventListener('mouseup', e => {
+  if(!isDrag) return; isDrag=false;
+  const walk = e.pageX - outer.offsetLeft - startX;
+  track.style.transition = 'transform .45s cubic-bezier(.25,.46,.45,.94)';
+  if(Math.abs(walk) > 60) slide(walk<0?1:-1); else goTo(cur);
+  if(dragged) { track.querySelectorAll('a').forEach(a => { const s=ev=>{ev.preventDefault();a.removeEventListener('click',s)};a.addEventListener('click',s,{once:true}); }); }
+});
+let tx=0;
+track.addEventListener('touchstart', e=>{tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend', e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40) slide(dx>0?1:-1);},{passive:true});
+
+function toggleFaq(button) {
+  const item = button.parentElement;
+
+  // fecha outros (opcional, deixa mais elegante)
+  document.querySelectorAll('.faq-item').forEach(i => {
+    if (i !== item) i.classList.remove('active');
+  });
+
+  item.classList.toggle('active');
+}
+
+
+
+
+// Map tab switcher
+const mapLinks = ['https://maps.app.goo.gl/HwsgJQysF2LVEBs79', 'https://maps.app.goo.gl/ojgCRSwRRYK8wzvk9'];
+function switchMap(idx, tabEl) {{
+  document.querySelectorAll('.map-frame').forEach((f,i) => {{
+    f.style.display = i === idx ? 'block' : 'none';
+  }});
+  document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+  document.getElementById('mapDirectLink').href = mapLinks[idx];
+}}
+
+</script>
+</body>
+</html>

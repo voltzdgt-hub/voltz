@@ -203,6 +203,9 @@ nav.scrolled{
   margin-top:28px;
   justify-content:center;
   flex-wrap:wrap;
+
+  position:relative;   /* 🔥 essencial */
+  z-index:10;          /* 🔥 garante que fique clicável */
 }
 
 /* BOTÃO PRINCIPAL */
@@ -908,9 +911,14 @@ nav.scrolled{
   <p class="hero-tag">Agência de Performance Digital</p>
   <h1 class="hero-name">VOLTZ<span class="dot">.</span></h1>
   <p class="hero-tagline">Projetos que aceleram negócios.</p>
-  <div class="hero-cta">
+ <div class="hero-cta">
   <a href="#portfolio" class="btn-primary">Ver projetos</a>
-  <a href="#contato" class="btn-secondary">Fale conosco</a>
+
+  <a href="https://api.whatsapp.com/send?phone=5511939300263" 
+     target="_blank" 
+     class="btn-secondary">
+     Fale conosco →
+  </a>
 </div>
   <div class="hero-scroll-hint">
     <span>scroll</span>

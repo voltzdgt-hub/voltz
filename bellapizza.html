@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bella Pizza — São Paulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C0390B;
+    --red-dark: #8f2808;
+    --cream: #FBF6EF;
+    --dark: #0f0a06;
+    --dark2: #1c1208;
+    --text: #1a1008;
+    --text-muted: #6b5c4a;
+    --border: rgba(0,0,0,0.08);
+    --gold: #D4A942;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    background: rgba(15,10,6,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: #fff; text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--red); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none; font-size: 14px; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  .nav-cta {
+    background: var(--red);
+    color: #fff !important;
+    padding: 9px 20px;
+    border-radius: 50px;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5% 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(192,57,11,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 30%, rgba(212,169,66,0.08) 0%, transparent 60%);
+  }
+
+  .hero-noise {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 760px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 24px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 700; line-height: 1.08; color: #fff;
+    margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: var(--red); }
+
+  .hero-sub {
+    font-size: 17px; color: rgba(255,255,255,0.55);
+    font-weight: 300; line-height: 1.7; max-width: 540px; margin: 0 auto 40px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--red); color: #fff;
+    padding: 14px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8);
+    padding: 14px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 400;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .hero-stats {
+    display: flex; align-items: center; justify-content: center; gap: 40px;
+    margin-top: 64px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: #fff;
+  }
+  .hero-stat-label {
+    font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 100px 5%; }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); font-weight: 500; margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 46px); font-weight: 700;
+    color: var(--text); line-height: 1.15; margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--red); }
+
+  .section-sub {
+    font-size: 16px; color: var(--text-muted);
+    font-weight: 300; line-height: 1.7; max-width: 500px;
+  }
+
+  .section-header { margin-bottom: 52px; }
+
+  /* ── MENU SECTION ── */
+  #pizzas { background: var(--cream); }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+
+  /* card base */
+  .pizza-card {
+    position: relative; border-radius: var(--radius);
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .pizza-card:hover { transform: translateY(-6px); }
+
+  .pizza-card:nth-child(1) { grid-column: span 7; aspect-ratio: 16/10; }
+  .pizza-card:nth-child(2) { grid-column: span 5; aspect-ratio: 3/4; }
+  .pizza-card:nth-child(3) { grid-column: span 5; aspect-ratio: 3/4; }
+  .pizza-card:nth-child(4) { grid-column: span 7; aspect-ratio: 16/10; }
+
+  .pizza-img-wrap {
+    width: 100%; height: 100%;
+    position: absolute; inset: 0;
+  }
+
+  .pizza-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .pizza-card:hover .pizza-img { transform: scale(1.06); }
+
+  /* dark photo placeholder while real images load */
+  .pizza-photo {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .pizza-photo.salgada {
+    background: linear-gradient(145deg, #180c02 0%, #3d1e06 40%, #221005 100%);
+  }
+  .pizza-photo.doce {
+    background: linear-gradient(145deg, #14001a 0%, #3d0e4d 40%, #1a0020 100%);
+  }
+
+  .pizza-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.35) 45%,
+      rgba(0,0,0,0.05) 100%);
+  }
+
+  .pizza-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px;
+  }
+
+  .pizza-badge {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 50px; font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .pizza-badge.vermelho { background: var(--red); color: #fff; }
+  .pizza-badge.ouro { background: var(--gold); color: #1a0f00; }
+  .pizza-badge.roxo { background: #7B3FA0; color: #fff; }
+
+  .pizza-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 32px); font-weight: 700;
+    color: #fff; line-height: 1.1; margin-bottom: 6px;
+  }
+
+  .pizza-desc {
+    font-size: 13px; color: rgba(255,255,255,0.65);
+    font-weight: 300; line-height: 1.6; margin-bottom: 16px;
+    max-width: 400px;
+  }
+
+  .pizza-footer {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+
+  .pizza-price {
+    font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.02em;
+  }
+
+  .pizza-cta {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff; font-size: 13px; font-weight: 500;
+    padding: 8px 18px; border-radius: 50px; cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s;
+    text-decoration: none; font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .pizza-cta:hover { background: rgba(255,255,255,0.22); }
+
+  /* ── FEATURES ── */
+  #features { background: var(--dark); }
+  #features .section-title { color: #fff; }
+  #features .section-sub { color: rgba(255,255,255,0.45); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px; border: 2px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius); overflow: hidden;
+  }
+
+  .feature-item {
+    padding: 40px 32px;
+    background: rgba(255,255,255,0.03);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.25s;
+  }
+  .feature-item:last-child { border-right: none; }
+  .feature-item:hover { background: rgba(255,255,255,0.06); }
+
+  .feature-icon {
+    font-size: 32px; margin-bottom: 20px; display: block;
+  }
+
+  .feature-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 600; color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .feature-text {
+    font-size: 14px; color: rgba(255,255,255,0.4);
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* ── DELIVERY ── */
+  #delivery { background: var(--cream); }
+
+  .delivery-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+
+  .delivery-left .section-header { margin-bottom: 36px; }
+
+  .delivery-platforms {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+
+  .platform-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: transform 0.2s;
+    border: 1px solid transparent;
+  }
+  .platform-btn:hover { transform: translateX(6px); }
+
+  .platform-btn.ifood { background: #EA1D2C; color: #fff; }
+  .platform-btn.noventa9 { background: #F9E000; color: #1a1a1a; border-color: #e6d000; }
+  .platform-btn.pdf { background: #fff; color: var(--text); border-color: var(--border); }
+
+  .platform-name { font-size: 16px; font-weight: 600; }
+  .platform-sub { font-size: 12px; opacity: 0.7; margin-top: 2px; }
+  .platform-arrow { font-size: 20px; opacity: 0.8; }
+
+  .delivery-right {
+    background: var(--dark);
+    border-radius: var(--radius);
+    padding: 40px;
+    color: #fff;
+  }
+
+  .delivery-info-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600; margin-bottom: 28px; color: #fff;
+  }
+
+  .delivery-info-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .delivery-info-item:last-child { border-bottom: none; }
+
+  .di-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .di-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+  .di-value { font-size: 15px; color: #fff; font-weight: 400; line-height: 1.5; }
+
+  /* ── REVIEWS ── */
+  #avaliacoes { background: #fff; }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .review-card {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 28px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.25s;
+  }
+  .review-card:hover { transform: translateY(-3px); }
+
+  .review-stars { color: var(--gold); font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
+
+  .review-text {
+    font-size: 15px; color: var(--text); line-height: 1.7;
+    font-style: italic; font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+  }
+  .review-text::before { content: '\201C'; }
+  .review-text::after  { content: '\201D'; }
+
+  .review-author { display: flex; align-items: center; gap: 12px; }
+
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; flex-shrink: 0;
+    color: #fff;
+  }
+  .av-mf { background: #4B6BAB; }
+  .av-rc { background: #3A9B5E; }
+  .av-as { background: #A85B3A; }
+
+  .review-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .review-source { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ── LOCATION ── */
+  #localizacao {
+    background: var(--dark);
+    padding-bottom: 0;
+  }
+  #localizacao .section-title { color: #fff; }
+  #localizacao .section-sub { color: rgba(255,255,255,0.45); }
+
+  .location-wrap {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 64px; align-items: start; margin-bottom: 0;
+    padding-bottom: 80px;
+  }
+
+  .location-details { display: flex; flex-direction: column; gap: 0; }
+
+  .loc-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .loc-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .loc-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+  .loc-value { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+  .loc-value a { color: #fff; }
+
+  .loc-cta {
+    margin-top: 28px;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red); color: #fff;
+    padding: 14px 28px; border-radius: 50px;
+    font-size: 15px; font-weight: 500;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .loc-cta:hover { background: var(--red-dark); }
+
+  .map-wrap {
+    border-radius: var(--radius);
+    overflow: hidden;
+    height: 380px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; filter: grayscale(0.3) contrast(1.05); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #000;
+    padding: 60px 5% 40px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 40px; flex-wrap: wrap;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 10px;
+  }
+  .footer-brand span { color: var(--red); }
+
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 240px; }
+
+  .footer-col h4 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.35); font-weight: 500; margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col a:hover { color: #fff; }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .menu-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .pizza-card:nth-child(1),
+    .pizza-card:nth-child(2),
+    .pizza-card:nth-child(3),
+    .pizza-card:nth-child(4) {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .delivery-wrap,
+    .location-wrap { grid-template-columns: 1fr; gap: 40px; }
+
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .feature-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 72px 5%; }
+    .pizza-card:nth-child(n) { grid-column: span 2; aspect-ratio: 4/3; }
+    .features-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">🍕 Bella<span>Pizza</span></a>
+  <ul class="nav-links">
+    <li><a href="#pizzas">Cardápio</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#localizacao">Localização</a></li>
+    <li><a href="https://wa.me/5511934567890" class="nav-cta">Reservar Mesa</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Desde 2008 · Pinheiros, São Paulo</div>
+    <h1 class="hero-title">Tradição Italiana,<br><em>Sabor de Verdade</em></h1>
+    <p class="hero-sub">Massa de fermentação lenta, forno a lenha artesanal e ingredientes selecionados. Cada pizza feita com paixão.</p>
+    <div class="hero-actions">
+      <a href="#delivery" class="btn-primary">Pedir Delivery</a>
+      <a href="https://www.voltzdigital.com.br/cardapio-bella-pizza.pdf" class="btn-ghost">↓ Baixar Cardápio</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">15+</div>
+        <div class="hero-stat-label">Anos de tradição</div>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="hero-stat-num">4.9★</div>
+        <div class="hero-stat-label">No Google</div>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="hero-stat-num">450°C</div>
+        <div class="hero-stat-label">Forno a lenha</div>
+      </div>
+      <div style="width:1px; height:36px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="hero-stat-num">72h</div>
+        <div class="hero-stat-label">Fermentação natural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="pizzas">
+  <div class="section-header">
+    <p class="section-eyebrow">Nosso cardápio</p>
+    <h2 class="section-title">Pizzas feitas com<br><em>alma napolitana</em></h2>
+    <p class="section-sub">Cada ingrediente escolhido a dedo. Cada pizza, uma experiência.</p>
+  </div>
+
+  <div class="menu-grid">
+
+    <!-- Calabresa — destaque -->
+    <div class="pizza-card">
+      <div class="pizza-img-wrap">
+        <img 
+  class="pizza-img" 
+  src="calabresa1.jpg"
+  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  alt="Pizza Calabresa" 
+/>
+        <div class="pizza-photo salgada" style="display:none;">🍕</div>
+      </div>
+      <div class="pizza-overlay"></div>
+      <div class="pizza-content">
+        <span class="pizza-badge ouro">⭐ Mais Pedida</span>
+        <h3 class="pizza-name">Calabresa</h3>
+        <p class="pizza-desc">Calabresa artesanal fatiada, cebola roxa caramelizada e mussarela fior di latte gratinada.</p>
+        <div class="pizza-footer">
+          <span class="pizza-price">R$ 68</span>
+          <a href="https://wa.me/5511934567890" class="pizza-cta">Pedir agora →</a>
+        </div>
+      </div>
+    </div>
+
+<!-- Mussarela -->
+<div class="pizza-card">
+  <div class="pizza-img-wrap">
+    <img 
+      class="pizza-img" 
+      src="crispy-pizza-with-cheese-tomatoes.jpg"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      alt="Pizza Mussarela" 
+    />
+
+    <div class="pizza-photo salgada" style="display:none;">
+      <img src="crispy-pizza-with-cheese-tomatoes.jpg" alt="Pizza Mussarela">
+    </div>
+  </div>
+
+  <div class="pizza-overlay"></div>
+
+  <div class="pizza-content">
+    <span class="pizza-badge vermelho">Clássica</span>
+    <h3 class="pizza-name">Mussarela</h3>
+    <p class="pizza-desc">Molho de tomate artesanal, mussarela fior di latte e orégano fresco.</p>
+
+    <div class="pizza-footer">
+      <span class="pizza-price">R$ 62</span>
+      <a href="https://wa.me/5511934567890" class="pizza-cta">Pedir →</a>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Portuguesa -->
+    <div class="pizza-card">
+      <div class="pizza-img-wrap">
+      <img 
+  class="pizza-img" 
+  src="engin-akyurt-K_hT25OKczo-unsplash.jpg"
+  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  alt="Pizza Portuguesa" 
+/>
+        <div class="pizza-photo salgada" style="display:none;">🍕</div>
+      </div>
+      <div class="pizza-overlay"></div>
+      <div class="pizza-content">
+        <span class="pizza-badge vermelho">Tradicional</span>
+        <h3 class="pizza-name">Portuguesa</h3>
+        <p class="pizza-desc">Presunto, ovo, cebola, pimentão, azeitonas e mussarela gratinada.</p>
+        <div class="pizza-footer">
+          <span class="pizza-price">R$ 72</span>
+          <a href="https://wa.me/5511934567890" class="pizza-cta">Pedir →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Romeu & Julieta — destaque doce -->
+    <div class="pizza-card">
+      <div class="pizza-img-wrap">
+       <img 
+  class="pizza-img" 
+  src="editorial-style-valentine-s-day-celebration.jpg"
+  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  alt="Pizza Romeu e Julieta" 
+/>
+        <div class="pizza-photo doce" style="display:none;">🍫</div>
+      </div>
+      <div class="pizza-overlay"></div>
+      <div class="pizza-content">
+        <span class="pizza-badge roxo">Pizza Doce</span>
+        <h3 class="pizza-name">Morango &amp; Chocolate</h3>
+        <p class="pizza-desc">Chocolate, Morango premium com borda crocante.</p>
+        <div class="pizza-footer">
+          <span class="pizza-price">R$ 58</span>
+          <a href="https://wa.me/5511934567890" class="pizza-cta">Pedir →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-header">
+    <p class="section-eyebrow">O que nos faz diferentes</p>
+    <h2 class="section-title" style="color:#fff;">O segredo está no<br><em>processo</em></h2>
+    <p class="section-sub">Cada detalhe pensado para uma pizza perfeita.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">🪵</span>
+      <h3 class="feature-name">Forno a Lenha Napolitano</h3>
+      <p class="feature-text">450°C para assar a pizza perfeita em 90 segundos. Borda crocante por fora, macia por dentro.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🌾</span>
+      <h3 class="feature-name">Fermentação Natural</h3>
+      <p class="feature-text">72 horas de fermentação lenta para uma massa leve, saborosa e de fácil digestão.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🍅</span>
+      <h3 class="feature-name">Ingredientes Selecionados</h3>
+      <p class="feature-text">Tomates San Marzano, mussarela fior di latte e azeites italianos extra-virgem importados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="delivery-wrap">
+    <div class="delivery-left">
+      <div class="section-header">
+        <p class="section-eyebrow">Delivery &amp; Cardápio</p>
+        <h2 class="section-title">Peça agora pela<br><em>sua plataforma</em></h2>
+        <p class="section-sub">Entregamos em Pinheiros e região. Ou baixe nosso cardápio completo em PDF.</p>
+      </div>
+      <div class="delivery-platforms">
+        <a href="https://www.ifood.com.br" class="platform-btn ifood" target="_blank" rel="noopener">
+          <div>
+            <div class="platform-name">Pedir no iFood</div>
+            <div class="platform-sub">Entrega em até 45 min</div>
+          </div>
+          <span class="platform-arrow">→</span>
+        </a>
+        <a href="https://www.99app.com/99food" class="platform-btn noventa9" target="_blank" rel="noopener">
+          <div>
+            <div class="platform-name">Pedir no 99Food</div>
+            <div class="platform-sub">Entrega rápida na região</div>
+          </div>
+          <span class="platform-arrow">→</span>
+        </a>
+        <a href="https://www.voltzdigital.com.br/cardapio-bella-pizza.pdf" class="platform-btn pdf" target="_blank" rel="noopener">
+          <div>
+            <div class="platform-name">Baixar Cardápio PDF</div>
+            <div class="platform-sub">Cardápio completo · Atualizado 2024</div>
+          </div>
+          <span class="platform-arrow">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="delivery-right">
+      <h3 class="delivery-info-title">Informações de entrega</h3>
+      <div class="delivery-info-item">
+        <span class="di-icon">📍</span>
+        <div>
+          <div class="di-label">Área de entrega</div>
+          <div class="di-value">Pinheiros, Vila Madalena,<br>Jardins e adjacências</div>
+        </div>
+      </div>
+      <div class="delivery-info-item">
+        <span class="di-icon">🕐</span>
+        <div>
+          <div class="di-label">Funcionamento</div>
+          <div class="di-value">Ter – Sex: 18h às 23h30<br>Sáb: 12h às 00h · Dom: 18h às 23h</div>
+        </div>
+      </div>
+      <div class="delivery-info-item">
+        <span class="di-icon">🏍️</span>
+        <div>
+          <div class="di-label">Tempo médio</div>
+          <div class="di-value">35 – 50 minutos</div>
+        </div>
+      </div>
+      <div class="delivery-info-item">
+        <span class="di-icon">💳</span>
+        <div>
+          <div class="di-label">Formas de pagamento</div>
+          <div class="di-value">Cartão, PIX, dinheiro<br>e vouchers aceitos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="avaliacoes">
+  <div class="section-header">
+    <p class="section-eyebrow">Avaliações</p>
+    <h2 class="section-title">O que nossos<br><em>clientes dizem</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">A melhor pizza que já comi em São Paulo — e olha que sou italiana! A massa tem aquele sabor que só a fermentação natural traz.</p>
+      <div class="review-author">
+        <div class="review-avatar av-mf">MF</div>
+        <div>
+          <div class="review-name">Marina Fontana</div>
+          <div class="review-source">Google · há 2 semanas</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Pedi pelo iFood e a calabresa chegou quentinha e perfeita. A borda recheada é incrível. Já virei cliente fiel, peço toda semana!</p>
+      <div class="review-author">
+        <div class="review-avatar av-rc">RC</div>
+        <div>
+          <div class="review-name">Rafael Costa</div>
+          <div class="review-source">iFood · há 1 mês</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">A Portuguesa é simplesmente irresistível. E a pizza doce de Romeu e Julieta encantou minha filha. Lugar top, super recomendo!</p>
+      <div class="review-author">
+        <div class="review-avatar av-as">AS</div>
+        <div>
+          <div class="review-name">Ana Souza</div>
+          <div class="review-source">Google · há 3 semanas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="localizacao">
+  <div class="section-header">
+    <p class="section-eyebrow">Onde estamos</p>
+    <h2 class="section-title">Venha nos visitar<br><em>em Pinheiros</em></h2>
+    <p class="section-sub">No coração do bairro mais animado de São Paulo.</p>
+  </div>
+  <div class="location-wrap">
+    <div class="location-details">
+      <div class="loc-item">
+        <span class="loc-icon">📍</span>
+        <div>
+          <div class="loc-label">Endereço</div>
+          <div class="loc-value">R. Cardeal Arcoverde, 742<br>Pinheiros, São Paulo – SP</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <span class="loc-icon">🕐</span>
+        <div>
+          <div class="loc-label">Funcionamento</div>
+          <div class="loc-value">Ter – Dom: 18h às 23h30<br>Sábado: 12h às 00h · Segunda fechado</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <span class="loc-icon">📞</span>
+        <div>
+          <div class="loc-label">Reservas</div>
+          <div class="loc-value">(11) 3456-7890<br>WhatsApp disponível</div>
+        </div>
+      </div>
+      <a href="https://wa.me/5511934567890" class="loc-cta" target="_blank" rel="noopener">
+        📲 Reservar via WhatsApp
+      </a>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6882%2C-23.5662%2C-46.6682%2C-23.5562&layer=mapnik&marker=-23.5612%2C-46.6782"
+        title="Localização Bella Pizza"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">🍕 Bella<span>Pizza</span></div>
+      <p class="footer-tagline">Tradição napolitana com o calor do povo brasileiro.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Cardápio</h4>
+      <ul>
+        <li><a href="#pizzas">Pizzas Salgadas</a></li>
+        <li><a href="#pizzas">Pizzas Doces</a></li>
+        <li><a href="https://www.voltzdigital.com.br/cardapio-bella-pizza.pdf">Baixar PDF</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Delivery &amp; Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5511934567890">WhatsApp</a></li>
+        <li><a href="https://www.ifood.com.br">iFood</a></li>
+        <li><a href="https://www.99app.com/99food">99Food</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 Bella Pizza · Projeto para portfólio Voltz Digital</span>
+    <span class="footer-copy">Feito com ❤️ em São Paulo</span>
+  </div>
+</footer>
+
+</body>
+</html>
